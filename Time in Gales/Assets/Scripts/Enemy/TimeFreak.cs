@@ -68,14 +68,27 @@ public class TimeFreakChaseState : EnemyState
 
             Vector3 dirToTarget = target.transform.position - self.transform.position;
             if (dirToTarget.magnitude <= self.AttackRange)
-                nextState = new TimeFreakAttackState(anim, target, this, agent);
+                nextState = new TimeFreakAttackState(anim, target, self, agent);
 
         }
     }
 }
 
 
-public class TimeFreakAttackState
+public class TimeFreakAttackState : EnemyState
 {
     public TimeFreakAttackState(Animator _anim, GameObject _target, Enemy _self, NavMeshAgent _agent)
+        : base (_anim, _target, _self, _agent)
+    {
+
+    }
+
+    protected virtual void Enter()
+    {
+        anim.SetBool("isAttacking", true);
+        currentState = FSMSTATE.UPDATE;
+        GameManager.Instance.PlayerDamageEvent.Invoke(5);
+
+        
+    }
 }
