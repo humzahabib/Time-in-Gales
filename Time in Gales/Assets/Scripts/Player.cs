@@ -4,25 +4,35 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private Rigidbody player_rigidbody;
     private float horizontalInput;
     private float verticalInput;
+    public CharacterController controller;
+    public float speed = 6f;
+    private float targetAngle;
+    public float turnSmoothTime = 0.1f;
+    private float turnSmoothVelocity;
+    public Transform cam;
 
     // Start is called before the first frame update
     void Start()
     {
-        player_rigidbody = GetComponent<Rigidbody>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");
-    }
+        horizontalInput = Input.GetAxisRaw("Horizontal");
+        verticalInput = Input.GetAxisRaw("Vertical");
+        Vector3 direction = new Vector3(horizontalInput, 0f, verticalInput);
 
-    private void FixedUpdate()
-    {
-        player_rigidbody.velocity = new Vector3(horizontalInput, player_rigidbody.velocity.y, verticalInput);
+        if (direction.magnitude >= 0.1f)
+        {
+            targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg * cam.eulerAngles.y;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+            transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            Vector3 moreDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+            controller.Move(moreDir.normalized * speed * Time.deltaTime);
+        }
     }
 }
