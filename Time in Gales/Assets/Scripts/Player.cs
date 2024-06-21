@@ -13,6 +13,10 @@ public class Player : MonoBehaviour
     public float turnSmoothTime = 0.1f;
     private float turnSmoothVelocity;
     public Transform cam;
+    private float gravity = -9.81f;
+    // [SerializeField] private float gravityMultiplier = 3.0f;
+    private float downVelocity;
+    private Vector3 direction;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +29,15 @@ public class Player : MonoBehaviour
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
-        Vector3 direction = new Vector3(horizontalInput, 0f, verticalInput) * speed;
+        if (controller.isGrounded)
+        {
+            downVelocity = -1.0f;
+        }
+        else
+        {
+            downVelocity += gravity * Time.deltaTime;
+        }
+        Vector3 direction = new Vector3(horizontalInput, downVelocity, verticalInput) * speed;
 
         controller.Move(direction * Time.deltaTime);
 
@@ -46,7 +58,6 @@ public class Player : MonoBehaviour
             transform.forward = lookDir;
         }
 
-
         //if (direction.sqrMagnitude >= 0.1f)
         //{
         //    targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg * cam.eulerAngles.y;
@@ -55,7 +66,6 @@ public class Player : MonoBehaviour
         //    Vector3 moreDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
         //    controller.Move(moreDir.normalized * speed * Time.deltaTime);
         //}
-
 
     }
 }
