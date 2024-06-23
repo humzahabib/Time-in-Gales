@@ -1,0 +1,91 @@
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.UIElements;
+
+public class Player : MonoBehaviour
+{
+
+    [SerializeField] Animator animator;
+    
+    public CharacterController controller;
+    public float speed = 6f;
+    private float gravity = -9.81f;
+    private float downVelocity;
+    private Vector3 direction;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        float verticalInput = Input.GetAxisRaw("Vertical");
+
+        Vector3 direction = new Vector3(horizontalInput, 0f, verticalInput) * speed;
+
+        controller.Move(direction * Time.deltaTime);
+
+        // Aiming logic
+        Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        float rayDistance;
+
+        if (groundPlane.Raycast(ray, out rayDistance))
+        {
+            Vector3 pointToLook = ray.GetPoint(rayDistance);
+            Vector3 lookDir = pointToLook - transform.position;
+            lookDir.y = 0;
+            // Rotate the player to face the mouse cursor
+            transform.forward = lookDir;
+        }
+
+
+
+        // Walking Animation Logic
+        float x;
+        float y;
+
+        if (controller.velocity.sqrMagnitude > 0.1f)
+        {
+            float angle = Vector3.SignedAngle(transform.forward, controller.velocity / speed, transform.up);
+
+            x = Mathf.Cos(angle * Mathf.Deg2Rad);
+            y = Mathf.Sin(angle * Mathf.Deg2Rad);
+        }
+        else
+        {
+            x = 0; y = 0;
+        }
+
+        Debug.Log("X: " + x + "Y: " + y);
+        animator.SetFloat("vy", x);
+        animator.SetFloat("vx", y);
+
+
+
+    }
+
+    private void FixedUpdate()
+    {
+        if (controller.isGrounded)
+        {
+            downVelocity = -1.0f;
+        }
+        else
+        {
+            downVelocity += gravity * Time.deltaTime;
+        }
+
+
+        Vector3 directionDown = new Vector3(0f, downVelocity, 0f);
+
+        controller.Move(directionDown * Time.deltaTime);
+
+    }
+}
