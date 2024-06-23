@@ -14,11 +14,14 @@ public class Player : MonoBehaviour
     private float gravity = -9.81f;
     private float downVelocity;
     private Vector3 direction;
+    int hasRifleHash;
+    int fireHash;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        hasRifleHash = Animator.StringToHash("hasRifle");
+        fireHash = Animator.StringToHash("Fire");
     }
 
     // Update is called once per frame
@@ -63,12 +66,39 @@ public class Player : MonoBehaviour
             x = 0; y = 0;
         }
 
-        Debug.Log("X: " + x + "Y: " + y);
+        // Debug.Log("X: " + x + "Y: " + y);
         animator.SetFloat("vy", x);
         animator.SetFloat("vx", y);
 
+        // Gun Switching Animation Logic
 
+        bool hasRifle = animator.GetBool(hasRifleHash);
+        bool Fire = animator.GetBool(fireHash);
+        bool isChangeToPistol = Input.GetKey("1");
+        bool isChangeToRifle = Input.GetKey("2");
+        bool isFirePressed = Input.GetButtonDown("Fire1");
 
+        if (!hasRifle && isChangeToRifle)
+        {
+            animator.SetBool(hasRifleHash, true);
+            Debug.Log("errrrrrorrrrrrr");
+        }
+
+        if (hasRifle && isChangeToPistol)
+        {
+            animator.SetBool(hasRifleHash, false);
+        }
+
+        if (!Fire && isFirePressed && hasRifle)
+        {
+            animator.SetBool(fireHash, true);
+            Debug.Log("fireeeeeee");
+
+        }
+        else
+        {
+            animator.SetBool(fireHash, false);
+        }
     }
 
     private void FixedUpdate()

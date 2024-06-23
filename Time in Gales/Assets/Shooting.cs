@@ -7,7 +7,7 @@ public class Shooting : MonoBehaviour
 
     public Transform firePoint;
     public GameObject bulletPreFab;
-    public float bulletForce = 10f;
+    public float bulletForce = 1f;
 
     // Update is called once per frame
     void Update()
@@ -21,7 +21,7 @@ public class Shooting : MonoBehaviour
     void Shoot()
     {
         GameObject bullet = Instantiate(bulletPreFab, firePoint.position, firePoint.rotation);
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.AddForce(firePoint.forward * bulletForce, ForceMode2D.Impulse);
+        Rigidbody rb = bullet.GetComponent<Rigidbody>();
+        rb.AddForce(firePoint.forward * bulletForce, ForceMode.Impulse);
     }
 }
