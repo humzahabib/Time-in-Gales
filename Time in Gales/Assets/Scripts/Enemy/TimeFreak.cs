@@ -20,7 +20,7 @@ public class TimeFreak : Enemy
 
     }
 }
-
+/*
 public class TimeFreakIdleState : EnemyState
 {
     public TimeFreakIdleState (Animator _anim, GameObject _target, Enemy _self, NavMeshAgent _agent)
@@ -92,3 +92,4 @@ public class TimeFreakAttackState : EnemyState
         
     }
 }
+*/

@@ -1,0 +1,86 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class TemporalRifle : Gun
+{
+
+    bool isPrimaryCool, isSecondaryCool, canPrimary, canSecondary;
+    [SerializeField] protected float secondaryPoints;
+    // Start is called before the first frame update
+    void Start()
+    {
+        isPrimaryCool = true;
+        isSecondaryCool = true;
+        canPrimary = true;
+        canSecondary = true;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (currentHeatup >= TotalHeatCapacity)
+        {
+            isPrimaryCool = false;
+            isSecondaryCool = false;
+            StartCoroutine(Recover(FIRETYPE.BOTH));
+        }
+
+        if (Input.GetMouseButton(0))
+            PrimaryFire();
+        if (Input.GetMouseButton(1))
+            SecondaryFire();
+    }
+
+    public override void PrimaryFire()
+    {
+        if (isPrimaryCool && canPrimary)
+        {
+            if (Input.GetMouseButton(0))
+            {
+                GameObject.Instantiate(projectile, gunTip.transform.position, gunTip.transform.rotation);
+                currentHeatup += heatupPerShot;
+                StartCoroutine(Recover(FIRETYPE.PRIMARY));
+            }
+        }
+        
+        
+    }
+
+    public override void SecondaryFire()
+    {
+        if (canSecondary && isSecondaryCool)
+        {
+            if (Input.GetMouseButton(1))
+            {
+                heatupPerShot -= secondaryPoints;
+            }
+        }
+    }
+
+    protected override IEnumerator Recover(FIRETYPE fireType)
+    {
+        if (fireType == FIRETYPE.PRIMARY)
+        {
+            canPrimary = false;
+            yield return new WaitForSeconds(recoveryFromPrimaryFire);
+
+            canPrimary = true;
+        }
+        else if (fireType == FIRETYPE.SECONDARY)
+        {
+            canSecondary = false;
+            yield return new WaitForSeconds(recoveryFromSecondaryFire);
+            canSecondary = true;
+        }
+        else if (fireType == FIRETYPE.BOTH)
+        {
+            isPrimaryCool = false;
+            isSecondaryCool = false;
+            yield return new WaitForSeconds(normalCoolDownSeconds);
+
+            isSecondaryCool = true;
+            isPrimaryCool = false;
+        }
+}
+}

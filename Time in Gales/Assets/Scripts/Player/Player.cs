@@ -8,7 +8,8 @@ public class Player : MonoBehaviour
 {
 
     [SerializeField] Animator animator;
-    
+    [SerializeField] Transform pistol;
+    [SerializeField] Transform rifle;
     public CharacterController controller;
     public float speed = 6f;
     private float gravity = -9.81f;
@@ -44,8 +45,10 @@ public class Player : MonoBehaviour
             Vector3 pointToLook = ray.GetPoint(rayDistance);
             Vector3 lookDir = pointToLook - transform.position;
             lookDir.y = 0;
+            Debug.DrawLine(transform.position, transform.position + lookDir, Color.red);  
             // Rotate the player to face the mouse cursor
             transform.forward = lookDir;
+            
         }
 
 
@@ -81,18 +84,20 @@ public class Player : MonoBehaviour
         if (!hasRifle && isChangeToRifle)
         {
             animator.SetBool(hasRifleHash, true);
-            Debug.Log("errrrrrorrrrrrr");
+            rifle.gameObject.SetActive(true);
+            pistol.gameObject.SetActive(false);
         }
 
         if (hasRifle && isChangeToPistol)
         {
             animator.SetBool(hasRifleHash, false);
+            rifle.gameObject.SetActive(false);
+            pistol.gameObject.SetActive(true);
         }
 
         if (!Fire && isFirePressed && hasRifle)
         {
             animator.SetBool(fireHash, true);
-            Debug.Log("fireeeeeee");
 
         }
         else

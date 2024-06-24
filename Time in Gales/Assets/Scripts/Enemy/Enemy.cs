@@ -6,43 +6,34 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] protected Animator anim;
-    [SerializeField] protected GameObject target;
+    [SerializeField] protected GameObject player;
+    [SerializeField] protected float health;
+    [SerializeField] protected float speed;
     [SerializeField] protected NavMeshAgent agent;
-    protected EnemyState state;
-
-    [SerializeField] protected float fovRadius;
-    [SerializeField, Range(0, 360)] protected int fovAngle;
-    [SerializeField] protected float attackRange;
 
 
-    public float AttackRange
+    protected void Start()
     {
-        get {
-            return attackRange; 
-        }
+        agent = GetComponent<NavMeshAgent>();
+        player = GameManager.Instance.Player;
+        GameManager.Instance.EnemyDamageGivenEvent.AddListener(EnemyDamageGivenEventListener);
     }
 
 
-    public virtual bool CanSeeTarget()
+    protected virtual void EnemyDamageGivenEventListener(float damage, GameObject id)
     {
-        Vector3 targetDir = target.transform.position - transform.position;
-        targetDir.y = 0;
-
-
-        if (Mathf.Abs(Vector3.Angle(transform.forward, targetDir)) < fovAngle / 2)
+        if (id.GetInstanceID() == GetInstanceID())
         {
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, targetDir.normalized, out hit, fovRadius))
-            {
-                if (hit.collider.gameObject.tag == "Player")
-                {
-                    return true;
-                }
-            }
-        }
+            health -= damage;
 
-        return false;
+            if (health < 0)
+            {
+                GameManager.Instance.EnemyDamageGivenEvent.RemoveListener(EnemyDamageGivenEventListener);
+                Destroy(this.gameObject);
+            }
+                
+        }
+        Destroy(this.gameObject);
     }
 }
 
@@ -84,6 +75,6 @@ public class EnemyState
         return nextState;
     }
     
-
+   
 
 }
