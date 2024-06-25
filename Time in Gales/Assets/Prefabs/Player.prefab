@@ -286,6 +286,16 @@ PrefabInstance:
       propertyPath: gunTip
       value: 
       objectReference: {fileID: 7587608255206649048}
+    - target: {fileID: 8586800378674120615, guid: 1617cfd7d856042459cec623d111378d,
+        type: 3}
+      propertyPath: heatupPerShot
+      value: 0.3333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 8586800378674120615, guid: 1617cfd7d856042459cec623d111378d,
+        type: 3}
+      propertyPath: secondaryPoints
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 8097327819831229955, guid: 1617cfd7d856042459cec623d111378d, type: 3}

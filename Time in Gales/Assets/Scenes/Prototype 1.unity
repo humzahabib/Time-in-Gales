@@ -1264,9 +1264,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 10
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2660,6 +2660,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1920539366872239225, guid: 5771e6bde43733c468991d3730156153,
+        type: 3}
+      propertyPath: secondaryPoints
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3536390262032166961, guid: 5771e6bde43733c468991d3730156153,
         type: 3}
       propertyPath: m_LocalPosition.x

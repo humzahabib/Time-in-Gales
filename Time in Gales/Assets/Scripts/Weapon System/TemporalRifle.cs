@@ -20,7 +20,7 @@ public class TemporalRifle : Gun
     // Update is called once per frame
     void Update()
     {
-        GameManager.Instance.HeatupValueChange.Invoke(currentHeatup / TotalHeatCapacity);
+        GameManager.Instance.HeatupValueChange.Invoke(currentHeatup);
         Debug.Log("Current Heatup: " + currentHeatup);
         if (currentHeatup >= TotalHeatCapacity)
         {
@@ -34,6 +34,8 @@ public class TemporalRifle : Gun
         currentHeatup = Mathf.Clamp(currentHeatup, 0, TotalHeatCapacity);
         if (Input.GetMouseButton(0))
             PrimaryFire();
+        else
+            currentHeatup -= normalCoolDownSeconds * Time.deltaTime;
         if (Input.GetMouseButton(1))
             SecondaryFire();
     }
@@ -59,8 +61,9 @@ public class TemporalRifle : Gun
         {
             if (Input.GetMouseButton(1))
             {
-                heatupPerShot -= secondaryPoints;
+                currentHeatup -= secondaryPoints;
             }
+            GameManager.Instance.HeatupValueChange.Invoke(currentHeatup);
         }
     }
 
@@ -87,6 +90,10 @@ public class TemporalRifle : Gun
             currentHeatup = 0;
             isSecondaryCool = true;
             isPrimaryCool = true;
+
+            yield return null;
         }
+
+        yield return null;
 }
 }

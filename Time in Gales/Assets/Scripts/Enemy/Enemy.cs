@@ -41,7 +41,7 @@ public class Enemy : MonoBehaviour
     protected virtual void EnemyDamageGivenEventListener(float damage, GameObject id)
     {
         
-        if (id = this.gameObject)
+        if (id.GetInstanceID() == this.gameObject.GetInstanceID())
         {
 
             Debug.Log("Thain thain");
