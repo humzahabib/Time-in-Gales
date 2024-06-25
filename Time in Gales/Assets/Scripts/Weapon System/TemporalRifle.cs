@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TemporalRifle : Gun
 {
-
+    
     bool isPrimaryCool, isSecondaryCool, canPrimary, canSecondary;
     [SerializeField] protected float secondaryPoints;
     // Start is called before the first frame update
@@ -14,11 +14,14 @@ public class TemporalRifle : Gun
         isSecondaryCool = true;
         canPrimary = true;
         canSecondary = true;
+        currentHeatup = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
+        GameManager.Instance.HeatupValueChange.Invoke(currentHeatup / TotalHeatCapacity);
+        Debug.Log("Current Heatup: " + currentHeatup);
         if (currentHeatup >= TotalHeatCapacity)
         {
             isPrimaryCool = false;
@@ -26,6 +29,9 @@ public class TemporalRifle : Gun
             StartCoroutine(Recover(FIRETYPE.BOTH));
         }
 
+
+
+        currentHeatup = Mathf.Clamp(currentHeatup, 0, TotalHeatCapacity);
         if (Input.GetMouseButton(0))
             PrimaryFire();
         if (Input.GetMouseButton(1))
@@ -38,7 +44,7 @@ public class TemporalRifle : Gun
         {
             if (Input.GetMouseButton(0))
             {
-                GameObject.Instantiate(projectile, gunTip.transform.position, gunTip.transform.rotation);
+                GameObject.Instantiate(projectile, gunTip.position, gunTip.rotation);
                 currentHeatup += heatupPerShot;
                 StartCoroutine(Recover(FIRETYPE.PRIMARY));
             }
@@ -78,9 +84,9 @@ public class TemporalRifle : Gun
             isPrimaryCool = false;
             isSecondaryCool = false;
             yield return new WaitForSeconds(normalCoolDownSeconds);
-
+            currentHeatup = 0;
             isSecondaryCool = true;
-            isPrimaryCool = false;
+            isPrimaryCool = true;
         }
 }
 }

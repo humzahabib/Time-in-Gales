@@ -9,31 +9,52 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected GameObject player;
     [SerializeField] protected float health;
     [SerializeField] protected float speed;
+    [SerializeField] protected float attackRange;
     [SerializeField] protected NavMeshAgent agent;
+    [SerializeField] protected Animator animator;
 
 
     protected void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        player = GameManager.Instance.Player;
+
+        agent.speed = speed;
         GameManager.Instance.EnemyDamageGivenEvent.AddListener(EnemyDamageGivenEventListener);
+
+        player = GameManager.Instance.Player;
     }
+
+    private void Update()
+    {
+        agent.SetDestination(player.transform.position);
+        animator.SetFloat("Movement", agent.velocity.magnitude / speed);
+        if (agent.remainingDistance < attackRange)
+        {
+            animator.SetBool("isAttacking", true);
+        }
+        else
+            animator.SetBool("isAttacking", false);
+    }
+
 
 
     protected virtual void EnemyDamageGivenEventListener(float damage, GameObject id)
     {
-        if (id.GetInstanceID() == GetInstanceID())
+        
+        if (id = this.gameObject)
         {
+
+            Debug.Log("Thain thain");
             health -= damage;
 
-            if (health < 0)
+            if (health <= 0)
             {
                 GameManager.Instance.EnemyDamageGivenEvent.RemoveListener(EnemyDamageGivenEventListener);
+                GameManager.Instance.EnemyDeadEvent.Invoke();
                 Destroy(this.gameObject);
             }
                 
         }
-        Destroy(this.gameObject);
     }
 }
 

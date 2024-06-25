@@ -1,15 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public UnityEvent<float> PlayerDamageEvent;
-    public UnityEvent<float, GameObject> EnemyDamageGivenEvent;
+    public UnityEvent<float> PlayerDamageEvent = new UnityEvent<float>();
+    public UnityEvent<float, GameObject> EnemyDamageGivenEvent = new UnityEvent <float, GameObject>();
+    public UnityEvent<float> HeatupValueChange = new UnityEvent<float>(); 
+    public UnityEvent EnemyDeadEvent = new UnityEvent();
     static GameManager instance;
 
-    GameObject player;
+    [SerializeField] Slider slider;
+    [SerializeField] GameObject player;
 
 
 
@@ -24,10 +29,21 @@ public static GameManager Instance
 
     get { return instance; } 
 }
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(this);
+        DontDestroyOnLoad(this.gameObject);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        HeatupValueChange.AddListener(HeatupValueChangeEventListener);
     }
 
     // Update is called once per frame
@@ -40,5 +56,17 @@ public static GameManager Instance
     void PlayerDamageEventHandler(float damage)
     {
         Debug.Log(damage);
+    }
+
+    void Listener(float damage, GameObject o)
+    {
+        Debug.Log("Manager Listening");
+    }
+
+
+    void HeatupValueChangeEventListener(float value)
+    {
+        Debug.Log(value);
+        slider.value = value;
     }
 }

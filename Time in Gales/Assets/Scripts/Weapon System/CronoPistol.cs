@@ -21,7 +21,6 @@ public class CronoPistol : Gun
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("Firing");
             // Fire
             GameObject.Instantiate(projectile, gunTip.transform.position, gunTip.rotation);
 

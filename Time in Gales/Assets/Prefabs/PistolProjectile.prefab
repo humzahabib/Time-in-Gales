@@ -162,7 +162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 3453385480232973194}
   speed: 40
-  damagePoints: 40
+  damagePoints: 35
 --- !u!54 &3453385480232973194
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -209,5 +209,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.1470871, y: 0.1470871, z: 0.15171933}
-  m_Center: {x: -0.10661411, y: 0.42645645, z: -0.42414033}
+  m_Size: {x: 0.1, y: 0.1, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}

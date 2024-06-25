@@ -24,10 +24,11 @@ public class Projectile : MonoBehaviour
             Vector3 lookDir = pointToLook - transform.position;
             lookDir.y = transform.position.y;
             Debug.DrawLine(transform.position, transform.position + lookDir, Color.red);
-            
+            lookDir.y = 0;
             transform.forward = lookDir;
 
         }
+        
 
         rb.velocity = transform.forward * speed;
     }
