@@ -6,8 +6,9 @@ public class CronoPistol : Gun
 {
     [SerializeField] protected GameObject gernadeEffect;
     [SerializeField] protected float rangeForGernade;
-    
-    
+
+    //bool isChangePistol = Input.GetKey("1");
+    //bool isChangeRifle = Input.GetKey("2");
 
 
     private void Update()
