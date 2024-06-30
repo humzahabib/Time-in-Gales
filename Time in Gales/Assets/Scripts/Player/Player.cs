@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     int hasRifleHash;
     int fireHash;
 
+
     // Start is called before the first frame update
     void Start()
     {
