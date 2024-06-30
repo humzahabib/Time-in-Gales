@@ -41,10 +41,9 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Enemy")
-        {
-            GameManager.Instance.EnemyDamageGivenEvent.Invoke(damagePoints, collision.gameObject);
-        }
+        GameManager.Instance.EnemyDamageGivenEvent.Invoke(damagePoints, collision.gameObject);
+        if (collision.gameObject.tag == "Player")
+            GameManager.Instance.PlayerDamageEvent.Invoke(damagePoints);
         Destroy(this.gameObject);
     }
 }

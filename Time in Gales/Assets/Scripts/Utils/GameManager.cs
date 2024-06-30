@@ -69,4 +69,8 @@ public static GameManager Instance
         Debug.Log(value);
         slider.value = value;
     }
+
+
+    
+
 }
