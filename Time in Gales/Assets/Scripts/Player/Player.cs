@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
-
+    public UnityEvent<float> PlayerHealthUpdateEvent = new UnityEvent<float>();
     [SerializeField] Animator animator;
     [SerializeField] Transform pistol;
     [SerializeField] Transform rifle;
@@ -17,6 +17,12 @@ public class Player : MonoBehaviour
     private Vector3 direction;
     int hasRifleHash;
     int fireHash;
+    float MaxHealth;
+    float CurrentHealth;
+    public void setPlayerHealth(float damage)
+    {
+        CurrentHealth -= damage;
+    }
 
 
     // Start is called before the first frame update
@@ -24,11 +30,19 @@ public class Player : MonoBehaviour
     {
         hasRifleHash = Animator.StringToHash("hasRifle");
         fireHash = Animator.StringToHash("Fire");
+        MaxHealth = 100f;
+        CurrentHealth = MaxHealth;
+        PlayerHealthUpdateEvent.AddListener(setPlayerHealth);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(CurrentHealth <= 0)
+        {
+            Debug.Log("Player Dead");
+        }
+
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         float verticalInput = Input.GetAxisRaw("Vertical");
 
@@ -105,6 +119,8 @@ public class Player : MonoBehaviour
         {
             animator.SetBool(fireHash, false);
         }
+
+
     }
 
     private void FixedUpdate()

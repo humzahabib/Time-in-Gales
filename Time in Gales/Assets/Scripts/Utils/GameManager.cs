@@ -44,6 +44,7 @@ public static GameManager Instance
     {
         player = GameObject.FindGameObjectWithTag("Player");
         HeatupValueChange.AddListener(HeatupValueChangeEventListener);
+        PlayerDamageEvent.AddListener(PlayerDamageEventHandler);
     }
 
     // Update is called once per frame
