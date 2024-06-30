@@ -7,6 +7,7 @@ public class EnemySpawner2 : MonoBehaviour
     [SerializeField] private GameObject enemy;
     [SerializeField] private int enemyCount = 20; // Number of enemies to spawn
     private GameObject[] enemies;
+    int onceSpawned = 0;
 
     //public GameObject[] GetEnemyArray()
     //{
@@ -34,11 +35,12 @@ public class EnemySpawner2 : MonoBehaviour
     {
         Debug.Log("Triggerrrr");
         int i = 0;
-        while (i < enemyCount)
+        while (i < enemyCount && onceSpawned < enemyCount)
         {
             Vector3 spawnPosition = new Vector3(Random.Range(107f, 130f), 3.3f, Random.Range(35f, 65f));
             Instantiate(enemies[i], spawnPosition, Quaternion.identity);
             i++;
+            onceSpawned++;
         }
     }
 }

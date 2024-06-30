@@ -27,8 +27,6 @@ public class Gun : MonoBehaviour
     {
         yield return null;
     }
-
-    
 }
 
 
