@@ -41,9 +41,14 @@ public LayerMask PlayerLayer
     protected void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-
-        agent.speed = speed;
-        player = GameManager.Instance.Player;
+        if (agent != null)
+        {
+            agent.speed = speed;
+        }
+        if(player != null)
+        {
+            player = GameManager.Instance.Player;
+        }
     }
 
     private void Update()
@@ -56,7 +61,7 @@ public LayerMask PlayerLayer
 
         foreach (Collider coll in colliders)
         {
-            if (coll.tag == "Player")
+            if (coll.tag == "Player" && GameManager.Instance.PlayerHealthChangeEvent != null)
             {
                 GameManager.Instance.PlayerHealthChangeEvent.Invoke(attackDamage);
             }
@@ -72,7 +77,7 @@ public LayerMask PlayerLayer
             Debug.Log("Thain thain");
             health -= damage;
 
-            if (health <= 0)
+            if (health <= 0 && GameManager.Instance.EnemyDeadEvent != null && GameManager.Instance.EnemyDamageGivenEvent != null)
             {
                 GameManager.Instance.EnemyDamageGivenEvent.RemoveListener(EnemyDamageGivenEventListener);
                 GameManager.Instance.EnemyDeadEvent.Invoke();

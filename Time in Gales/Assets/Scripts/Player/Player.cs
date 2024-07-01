@@ -30,8 +30,10 @@ public class Player : MonoBehaviour
         fireHash = Animator.StringToHash("Fire");
         MaxHealth = 100f;
         currentHealth = MaxHealth;
-        GameManager.Instance.PlayerDamageEvent.AddListener(PlayerDamageGivenEventHandler);
-
+        if(GameManager.Instance != null)
+        {
+            GameManager.Instance.PlayerDamageEvent.AddListener(PlayerDamageGivenEventHandler);
+        }
     }
 
 
@@ -41,91 +43,98 @@ public class Player : MonoBehaviour
     void Update()
     {
 
-
-
         if(currentHealth <= 0)
         {
-            GameManager.Instance.PlayerDeadEvent.Invoke();
+            if(GameManager.Instance != null)
+            {
+                GameManager.Instance.PlayerDeadEvent.Invoke();
+            }
         }
 
 
         #region Movement Logic
 
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
-        float verticalInput = Input.GetAxisRaw("Vertical");
-
-        Vector3 direction = new Vector3(horizontalInput, 0f, verticalInput) * speed;
-
-        controller.Move(direction * Time.deltaTime);
-
-        // Aiming logic
-        Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        float rayDistance;
-
-        if (groundPlane.Raycast(ray, out rayDistance))
+        if(controller != null)
         {
-            Vector3 pointToLook = ray.GetPoint(rayDistance);
-            Vector3 lookDir = pointToLook - transform.position;
-            lookDir.y = 0;
-            Debug.DrawLine(transform.position, transform.position + lookDir, Color.red);  
-            // Rotate the player to face the mouse cursor
-            transform.forward = lookDir;
-            
-        }
+            float horizontalInput = Input.GetAxisRaw("Horizontal");
+            float verticalInput = Input.GetAxisRaw("Vertical");
+
+            Vector3 direction = new Vector3(horizontalInput, 0f, verticalInput) * speed;
+
+            controller.Move(direction * Time.deltaTime);
+
+            // Aiming logic
+            Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            float rayDistance;
+
+            if (groundPlane.Raycast(ray, out rayDistance))
+            {
+                Vector3 pointToLook = ray.GetPoint(rayDistance);
+                Vector3 lookDir = pointToLook - transform.position;
+                lookDir.y = 0;
+                Debug.DrawLine(transform.position, transform.position + lookDir, Color.red);  
+                // Rotate the player to face the mouse cursor
+                transform.forward = lookDir;
+                
+            }
 
 
 
-        // Walking Animation Logic
-        float x;
-        float y;
+            // Walking Animation Logic
+            float x;
+            float y;
 
-        if (controller.velocity.sqrMagnitude > 0.1f)
-        {
-            float angle = Vector3.SignedAngle(transform.forward, controller.velocity / speed, transform.up);
+            if (controller.velocity.sqrMagnitude > 0.1f)
+            {
+                float angle = Vector3.SignedAngle(transform.forward, controller.velocity / speed, transform.up);
 
-            x = Mathf.Cos(angle * Mathf.Deg2Rad);
-            y = Mathf.Sin(angle * Mathf.Deg2Rad);
-        }
-        else
-        {
-            x = 0; y = 0;
-        }
+                x = Mathf.Cos(angle * Mathf.Deg2Rad);
+                y = Mathf.Sin(angle * Mathf.Deg2Rad);
+            }
+            else
+            {
+                x = 0; y = 0;
+            }
 
-        // Debug.Log("X: " + x + "Y: " + y);
-        animator.SetFloat("vy", x);
-        animator.SetFloat("vx", y);
+            // Debug.Log("X: " + x + "Y: " + y);
+            if(animator != null)
+            {
+                animator.SetFloat("vy", x);
+                animator.SetFloat("vx", y);
 
-        // Gun Switching Animation Logic
+                // Gun Switching Animation Logic
 
-        bool hasRifle = animator.GetBool(hasRifleHash);
-        bool Fire = animator.GetBool(fireHash);
-        bool isChangeToPistol = Input.GetKey("1");
-        bool isChangeToRifle = Input.GetKey("2");
-        bool isFirePressed = Input.GetButtonDown("Fire1");
+                bool hasRifle = animator.GetBool(hasRifleHash);
+                bool Fire = animator.GetBool(fireHash);
+                bool isChangeToPistol = Input.GetKey("1");
+                bool isChangeToRifle = Input.GetKey("2");
+                bool isFirePressed = Input.GetButtonDown("Fire1");
 
-        if (!hasRifle && isChangeToRifle)
-        {
-            animator.SetBool(hasRifleHash, true);
-            rifle.gameObject.SetActive(true);
-            pistol.gameObject.SetActive(false);
-        }
+                if (!hasRifle && isChangeToRifle)
+                {
+                    animator.SetBool(hasRifleHash, true);
+                    if (rifle != null) rifle.gameObject.SetActive(true);
+                    if (pistol != null) pistol.gameObject.SetActive(false);
+                }
 
-        if (hasRifle && isChangeToPistol)
-        {
-            animator.SetBool(hasRifleHash, false);
-            rifle.gameObject.SetActive(false);
-            pistol.gameObject.SetActive(true);
-        }
+                if (hasRifle && isChangeToPistol)
+                {
+                    animator.SetBool(hasRifleHash, false);
+                    if (rifle != null) rifle.gameObject.SetActive(false);
+                    if (pistol != null) pistol.gameObject.SetActive(true);
+                }
 
-        if (!Fire && isFirePressed && hasRifle)
-        {
-            animator.SetBool(fireHash, true);
+                if (!Fire && isFirePressed && hasRifle)
+                {
+                    animator.SetBool(fireHash, true);
 
-        }
-        else
-        {
-            animator.SetBool(fireHash, false);
+                }
+                else
+                {
+                    animator.SetBool(fireHash, false);
+                }
+            }
         }
         #endregion
 
@@ -133,30 +142,25 @@ public class Player : MonoBehaviour
 
 private void FixedUpdate()
 {
-    if (controller.isGrounded)
+    if(controller != null)
     {
-        downVelocity = -1.0f;
+        if (controller.isGrounded)
+        {
+            downVelocity = -1.0f;
+        }
+        else
+        {
+            downVelocity += gravity * Time.deltaTime;
+        }
+
+
+        Vector3 directionDown = new Vector3(0f, downVelocity, 0f);
+
+        controller.Move(directionDown * Time.deltaTime);
     }
-    else
-    {
-        downVelocity += gravity * Time.deltaTime;
-    }
-
-
-    Vector3 directionDown = new Vector3(0f, downVelocity, 0f);
-
-    controller.Move(directionDown * Time.deltaTime);
-
 }
-
-
-
     void PlayerDamageGivenEventHandler(float damage)
     {
         currentHealth -= damage;
     }
-
-
-
-    
 }
