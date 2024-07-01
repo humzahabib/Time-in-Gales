@@ -22,8 +22,6 @@ public class Player : MonoBehaviour
     int fireHash;
     float MaxHealth;
     float currentHealth;
-    
-
 
     // Start is called before the first frame update
     void Start()
@@ -131,28 +129,31 @@ public class Player : MonoBehaviour
         }
         #endregion
 
+}
 
-
-
+private void FixedUpdate()
+{
+    if (controller.isGrounded)
+    {
+        downVelocity = -1.0f;
+    }
+    else
+    {
+        downVelocity += gravity * Time.deltaTime;
     }
 
 
-    private void FixedUpdate()
+    Vector3 directionDown = new Vector3(0f, downVelocity, 0f);
+
+    controller.Move(directionDown * Time.deltaTime);
+
+}
+
+
+
+    void PlayerDamageGivenEventHandler(float damage)
     {
-        if (controller.isGrounded)
-        {
-            downVelocity = -1.0f;
-        }
-        else
-        {
-            downVelocity += gravity * Time.deltaTime;
-        }
-
-
-        Vector3 directionDown = new Vector3(0f, downVelocity, 0f);
-
-        controller.Move(directionDown * Time.deltaTime);
-
+        currentHealth -= damage;
     }
 
 
