@@ -57,10 +57,13 @@ public bool IsPlayers
                 StartCoroutine(Recover(FIRETYPE.PRIMARY));
         }
 
-        isPrimaryCool = true;
-        isSecondaryCool = true;
-        canPrimary = true;
-        canSecondary = true;
+        if (isPlayers == false)
+        {
+            isPrimaryCool = true;
+            isSecondaryCool = true;
+            canPrimary = true;
+            canSecondary = true;
+        }
     }
 
     public override void SecondaryFire()

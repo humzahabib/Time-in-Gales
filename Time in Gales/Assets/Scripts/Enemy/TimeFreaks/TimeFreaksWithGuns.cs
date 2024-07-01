@@ -25,7 +25,6 @@ public float ReactionTime
         base.Start();
         state = new TimeFreakWithGunsChaseState(animator, player, this, agent, gun);
 
-        player = GameObject.FindGameObjectWithTag("Player");
         GameManager.Instance.EnemyDamageGivenEvent.AddListener(EnemyDamageGivenEventListener);
         
     }
@@ -48,7 +47,13 @@ public float ReactionTime
     
     protected override void EnemyDamageGivenEventListener(float damage, GameObject id)
     {
+        Debug.Log("Thain thain is ki bhi ho gyi.");
         base.EnemyDamageGivenEventListener(damage, id);
+
+        if (health <= 0)
+        {
+            this.gameObject.SetActive(false);
+        }
     }
 
 
@@ -90,7 +95,6 @@ public class TimeFreakWithGunsChaseState: EnemyState
 
         if (CanShoot())
         {
-            Debug.Log("CanShoot");
             angularSpeed = 0;
 
             Vector3 lookDir = target.transform.position - self.transform.position;

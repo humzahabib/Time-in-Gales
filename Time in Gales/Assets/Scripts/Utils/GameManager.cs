@@ -72,7 +72,6 @@ public static GameManager Instance
 
     void HeatupValueChangeEventListener(float value)
     {
-        Debug.Log(value);
         slider.value = value;
     }
 

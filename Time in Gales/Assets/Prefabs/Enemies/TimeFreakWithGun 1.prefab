@@ -50,7 +50,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7617613253462837986
 Transform:
   m_ObjectHideFlags: 0
@@ -112,7 +112,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
-  reactionTime: 0.4
+  reactionTime: 0.25
   gun: {fileID: 4371284038848768784}
 --- !u!65 &4841274760173813763
 BoxCollider:
@@ -133,8 +133,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.38962817, y: 1, z: 0.42802}
-  m_Center: {x: -0.00791347, y: 0, z: 0.008066893}
+  m_Size: {x: 0.48345542, y: 1.9699807, z: 0.42802}
+  m_Center: {x: 0.008129865, y: 1.0072882, z: 0.008066893}
 --- !u!1001 &214403006010123897
 PrefabInstance:
   m_ObjectHideFlags: 0
