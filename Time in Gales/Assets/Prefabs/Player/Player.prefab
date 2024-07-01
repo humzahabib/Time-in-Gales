@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 7190980662469437199}
   - component: {fileID: 2699062887614975762}
   - component: {fileID: 6538875278844698092}
+  - component: {fileID: 2355017670688266137}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -172,6 +173,27 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0.89, z: 0}
   m_TimeToStationary: 0.5
+--- !u!65 &2355017670688266137
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3981554873346619703}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.54833406, y: 1.9232581, z: 0.42213297}
+  m_Center: {x: -0.006642133, y: 0.90665305, z: -0.009963274}
 --- !u!1 &5467194555683619297
 GameObject:
   m_ObjectHideFlags: 0
