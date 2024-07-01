@@ -43,6 +43,11 @@ public float ReactionTime
     {
         visible = false;
     }
+
+    private void OnDrawGizmosSelected()
+    {
+        Debug.DrawLine(transform.position, player.transform.position);
+    }
 }
 
 
