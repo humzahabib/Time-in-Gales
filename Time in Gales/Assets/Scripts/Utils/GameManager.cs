@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public UnityEvent<float> PlayerDamageEvent = new UnityEvent<float>();
+    public UnityEvent<float> PlayerHealthChangeEvent = new UnityEvent<float>();
     public UnityEvent<float, GameObject> EnemyDamageGivenEvent = new UnityEvent <float, GameObject>();
     public UnityEvent<float> HeatupValueChange = new UnityEvent<float>(); 
     public UnityEvent EnemyDeadEvent = new UnityEvent();
@@ -44,7 +44,7 @@ public static GameManager Instance
     {
         player = GameObject.FindGameObjectWithTag("Player");
         HeatupValueChange.AddListener(HeatupValueChangeEventListener);
-        PlayerDamageEvent.AddListener(PlayerDamageEventHandler);
+        PlayerHealthChangeEvent.AddListener(PlayerDamageEventHandler);
     }
 
     // Update is called once per frame

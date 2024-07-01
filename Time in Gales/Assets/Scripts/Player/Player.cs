@@ -6,7 +6,6 @@ using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
-    public UnityEvent<float> PlayerHealthUpdateEvent = new UnityEvent<float>();
     [SerializeField] Animator animator;
     [SerializeField] Transform pistol;
     [SerializeField] Transform rifle;
@@ -18,11 +17,8 @@ public class Player : MonoBehaviour
     int hasRifleHash;
     int fireHash;
     float MaxHealth;
-    float CurrentHealth;
-    public void setPlayerHealth(float damage)
-    {
-        CurrentHealth -= damage;
-    }
+    float currentHealth;
+   
 
 
     // Start is called before the first frame update
@@ -31,14 +27,16 @@ public class Player : MonoBehaviour
         hasRifleHash = Animator.StringToHash("hasRifle");
         fireHash = Animator.StringToHash("Fire");
         MaxHealth = 100f;
-        CurrentHealth = MaxHealth;
-        PlayerHealthUpdateEvent.AddListener(setPlayerHealth);
+        currentHealth = MaxHealth;
+        GameManager.Instance.PlayerHealthChangeEvent.AddListener(PlayerHealthChangeEventHandler);
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(CurrentHealth <= 0)
+        HUDManager.Instance.PlayerHealthBarChangeEvent.Invoke(currentHealth);
+        if(currentHealth <= 0)
         {
             Debug.Log("Player Dead");
         }
@@ -139,5 +137,11 @@ public class Player : MonoBehaviour
 
         controller.Move(directionDown * Time.deltaTime);
 
+    }
+
+     public void PlayerHealthChangeEventHandler(float damage)
+    {
+        currentHealth -= damage;
+        GameManager.Instance.PlayerHealthChangeEvent.Invoke(currentHealth);
     }
 }

@@ -58,7 +58,7 @@ public LayerMask PlayerLayer
         {
             if (coll.tag == "Player")
             {
-                GameManager.Instance.PlayerDamageEvent.Invoke(attackDamage);
+                GameManager.Instance.PlayerHealthChangeEvent.Invoke(attackDamage);
             }
         }
     }
