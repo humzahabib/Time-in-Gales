@@ -74,8 +74,10 @@ public class TimeFreakWithGunsChaseState: EnemyState
     {
         anim.SetFloat("Movement", agent.velocity.magnitude / agent.speed);
         elapsedSeconds += Time.deltaTime;
-        if (self.Visible && CanShoot())
+
+        if (CanShoot())
         {
+            Debug.Log("CanShoot");
             angularSpeed = 0;
 
             Vector3 lookDir = target.transform.position - self.transform.position;
@@ -83,7 +85,7 @@ public class TimeFreakWithGunsChaseState: EnemyState
 
             float angle = Vector3.SignedAngle(self.transform.forward, lookDir, Vector3.up);
 
-            if (angle < 1f)
+            if (angle < 2f)
             {
                 if (elapsedSeconds >= self.ReactionTime)
                 {
@@ -93,7 +95,7 @@ public class TimeFreakWithGunsChaseState: EnemyState
             }
             else
             {
-                self.transform.Rotate(new Vector3(0, angle, 0) * Time.deltaTime * angularSpeed);
+                self.transform.Rotate(new Vector3(0, angle, 0) * Time.deltaTime * 10f);
             }
         }
         else
@@ -101,7 +103,7 @@ public class TimeFreakWithGunsChaseState: EnemyState
             agent.angularSpeed = angularSpeed;
         }
 
-        if (agent.velocity.magnitude < 0.1f)
+        if (agent.velocity.magnitude < 0.2f)
         {
             angularSpeed = 0;
 
@@ -110,7 +112,7 @@ public class TimeFreakWithGunsChaseState: EnemyState
 
 
             float angle = Vector3.SignedAngle(self.transform.forward, lookDir, Vector3.up);
-            self.transform.Rotate(new Vector3(0, angle, 0) * Time.deltaTime * angularSpeed);
+            self.transform.Rotate(new Vector3(0, angle, 0) * Time.deltaTime * 10f);
 
         }
         agent.stoppingDistance = self.AttackRange;
@@ -120,10 +122,9 @@ public class TimeFreakWithGunsChaseState: EnemyState
 
     protected virtual bool CanShoot()
     {
-        Ray ray = new Ray(self.transform.position, target.transform.position);
+        Ray ray = new Ray(self.transform.position, target.transform.position - self.transform.position);
         RaycastHit hit;
         Physics.Raycast(ray, out hit, Mathf.Infinity);
-
         return (hit.transform.tag == target.transform.tag);
     }
 }

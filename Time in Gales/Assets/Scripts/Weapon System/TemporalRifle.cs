@@ -6,7 +6,13 @@ public class TemporalRifle : Gun
 {
     
     bool isPrimaryCool, isSecondaryCool, canPrimary, canSecondary;
+    [SerializeField] bool isPlayers;
     [SerializeField] protected float secondaryPoints;
+
+
+public bool IsPlayers
+        { get { return isPlayers; } set { isPlayers = value; } }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,39 +26,41 @@ public class TemporalRifle : Gun
     // Update is called once per frame
     void Update()
     {
-        GameManager.Instance.HeatupValueChange.Invoke(currentHeatup);
-        Debug.Log("Current Heatup: " + currentHeatup);
-        if (currentHeatup >= TotalHeatCapacity)
+        if (isPlayers)
         {
-            isPrimaryCool = false;
-            isSecondaryCool = false;
-            StartCoroutine(Recover(FIRETYPE.BOTH));
+            GameManager.Instance.HeatupValueChange.Invoke(currentHeatup);
+            if (currentHeatup >= TotalHeatCapacity)
+            {
+                isPrimaryCool = false;
+                isSecondaryCool = false;
+                StartCoroutine(Recover(FIRETYPE.BOTH));
+            }
+
+
+
+            currentHeatup = Mathf.Clamp(currentHeatup, 0, TotalHeatCapacity);
+            if (Input.GetMouseButton(0))
+                PrimaryFire();
+            else
+                currentHeatup -= normalCoolDownSeconds * Time.deltaTime;
+            if (Input.GetMouseButton(1))
+                SecondaryFire();
         }
-
-
-
-        currentHeatup = Mathf.Clamp(currentHeatup, 0, TotalHeatCapacity);
-        if (Input.GetMouseButton(0))
-            PrimaryFire();
-        else
-            currentHeatup -= normalCoolDownSeconds * Time.deltaTime;
-        if (Input.GetMouseButton(1))
-            SecondaryFire();
     }
 
     public override void PrimaryFire()
     {
         if (isPrimaryCool && canPrimary)
         {
-            if (Input.GetMouseButton(0))
-            {
                 GameObject.Instantiate(projectile, gunTip.position, gunTip.rotation);
                 currentHeatup += heatupPerShot;
                 StartCoroutine(Recover(FIRETYPE.PRIMARY));
-            }
         }
-        
-        
+
+        isPrimaryCool = true;
+        isSecondaryCool = true;
+        canPrimary = true;
+        canSecondary = true;
     }
 
     public override void SecondaryFire()

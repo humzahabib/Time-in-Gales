@@ -54,6 +54,7 @@ MonoBehaviour:
   gunTip: {fileID: 904936338340605652}
   projectile: {fileID: 7652523513784815781, guid: 5b02ae52ee892d449b3ebb6679ebf6dd,
     type: 3}
+  isPlayers: 0
   secondaryPoints: 4
 --- !u!1 &3430435333907120288
 GameObject:

@@ -6,23 +6,23 @@ using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
-    public UnityEvent<float> PlayerHealthUpdateEvent = new UnityEvent<float>();
     [SerializeField] Animator animator;
     [SerializeField] Transform pistol;
     [SerializeField] Transform rifle;
-    public CharacterController controller;
+    [SerializeField] CharacterController controller;
+
+
+    // Specs of the Player
     public float speed = 6f;
     private float gravity = -9.81f;
     private float downVelocity;
+
     private Vector3 direction;
     int hasRifleHash;
     int fireHash;
     float MaxHealth;
-    float CurrentHealth;
-    public void setPlayerHealth(float damage)
-    {
-        CurrentHealth -= damage;
-    }
+    float currentHealth;
+    
 
 
     // Start is called before the first frame update
@@ -31,17 +31,27 @@ public class Player : MonoBehaviour
         hasRifleHash = Animator.StringToHash("hasRifle");
         fireHash = Animator.StringToHash("Fire");
         MaxHealth = 100f;
-        CurrentHealth = MaxHealth;
-        PlayerHealthUpdateEvent.AddListener(setPlayerHealth);
+        currentHealth = MaxHealth;
+        GameManager.Instance.PlayerDamageEvent.AddListener(PlayerDamageGivenEventHandler);
+
     }
+
+
+
 
     // Update is called once per frame
     void Update()
     {
-        if(CurrentHealth <= 0)
+
+
+
+        if(currentHealth <= 0)
         {
-            Debug.Log("Player Dead");
+            GameManager.Instance.PlayerDeadEvent.Invoke();
         }
+
+
+        #region Movement Logic
 
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         float verticalInput = Input.GetAxisRaw("Vertical");
@@ -119,9 +129,13 @@ public class Player : MonoBehaviour
         {
             animator.SetBool(fireHash, false);
         }
+        #endregion
+
+
 
 
     }
+
 
     private void FixedUpdate()
     {
@@ -139,5 +153,12 @@ public class Player : MonoBehaviour
 
         controller.Move(directionDown * Time.deltaTime);
 
+    }
+
+
+
+    void PlayerDamageGivenEventHandler(float damage)
+    {
+        currentHealth -= damage;
     }
 }
