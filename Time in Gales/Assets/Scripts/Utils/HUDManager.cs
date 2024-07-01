@@ -1,31 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class HUDManager : MonoBehaviour
 {
-    public UnityEvent<float> PlayerHealthBarChangeEvent = new UnityEvent<float>();
+
     [SerializeField] Slider playerHealthBar;
+    [SerializeField] Slider coolDownBar;
+    [SerializeField] Transform deadScreen;
 
-
-    static HUDManager instance;
-
-public static HUDManager Instance
-{get {return instance;}}
-
-    void Awake()
-    {
-        if (instance == null)
-            instance = this;
-        else
-            Destroy(this);
-    }
     // Start is called before the first frame update
     void Start()
     {
-        PlayerHealthBarChangeEvent.AddListener(PlayerHealthChangeEventHandler);
+        GameManager.Instance.PlayerDamageEvent.AddListener(PlayerHealthChangeEventHandler);
+        GameManager.Instance.PlayerDeadEvent.AddListener(PlayerDeadEventHandler);
     }
 
     // Update is called once per frame
@@ -34,8 +24,20 @@ public static HUDManager Instance
         
     }
 
-    public void PlayerHealthChangeEventHandler(float currentHealth)
+
+    void PlayerDeadEventHandler()
     {
-        playerHealthBar.value = currentHealth;
+        deadScreen.gameObject.SetActive(true);
+    }
+
+    void HeatupValueChangeEventHandler(float value)
+    {
+        coolDownBar.value = value;
+    }
+
+
+    void PlayerHealthChangeEventHandler(float value)
+    {
+        playerHealthBar.value -= value;
     }
 }

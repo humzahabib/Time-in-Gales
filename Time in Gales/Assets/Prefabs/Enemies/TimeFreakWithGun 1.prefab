@@ -111,8 +111,8 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
-  reactionTime: 0.2
-  gun: {fileID: 0}
+  reactionTime: 0.4
+  gun: {fileID: 4371284038848768784}
 --- !u!1001 &214403006010123897
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -181,6 +181,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 4fb5f6b728163c342a92f1cacc8c09d9, type: 2}
+    - target: {fileID: 5866666021909216657, guid: f31d8957ca95d36439ada355c8b732b9,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -287,6 +292,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d04c9659ff27df942a47c7e57e006fd7, type: 3}
+--- !u!114 &4371284038848768784 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2423999659191950189, guid: d04c9659ff27df942a47c7e57e006fd7,
+    type: 3}
+  m_PrefabInstance: {fileID: 2092534955357220989}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 950519399ed03824e97e2bb7ce48db21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7532047801116237130 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8470453846364925239, guid: d04c9659ff27df942a47c7e57e006fd7,

@@ -17,12 +17,13 @@ public class EnemyAnimationEventHandler : MonoBehaviour
         hand = parent.Hand;
         attackRadius = parent.AttackRadius;
         playerLayer = parent.PlayerLayer;
+        attackDamage = parent.AttackDamage;
     }
 
 
     public void AttackEventCall()
     {
-        Collider[] colliders = Physics.OverlapSphere(hand.position, attackRadius, playerLayer);
+        Collider[] colliders = Physics.OverlapSphere(hand.position, attackRadius);
 
         foreach (Collider coll in colliders)
         {

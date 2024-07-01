@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 50
-  attackDamage: 0
+  attackDamage: 20
   speed: 3
   attackRange: 3
   agent: {fileID: 8458943276631088260}

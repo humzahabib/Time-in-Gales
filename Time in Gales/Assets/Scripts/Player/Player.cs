@@ -9,16 +9,20 @@ public class Player : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] Transform pistol;
     [SerializeField] Transform rifle;
-    public CharacterController controller;
+    [SerializeField] CharacterController controller;
+
+
+    // Specs of the Player
     public float speed = 6f;
     private float gravity = -9.81f;
     private float downVelocity;
+
     private Vector3 direction;
     int hasRifleHash;
     int fireHash;
     float MaxHealth;
     float currentHealth;
-   
+    
 
 
     // Start is called before the first frame update
@@ -28,18 +32,26 @@ public class Player : MonoBehaviour
         fireHash = Animator.StringToHash("Fire");
         MaxHealth = 100f;
         currentHealth = MaxHealth;
-        GameManager.Instance.PlayerHealthChangeEvent.AddListener(PlayerHealthChangeEventHandler);
+        GameManager.Instance.PlayerDamageEvent.AddListener(PlayerDamageGivenEventHandler);
 
     }
+
+
+
 
     // Update is called once per frame
     void Update()
     {
-        HUDManager.Instance.PlayerHealthBarChangeEvent.Invoke(currentHealth);
+
+
+
         if(currentHealth <= 0)
         {
-            Debug.Log("Player Dead");
+            GameManager.Instance.PlayerDeadEvent.Invoke();
         }
+
+
+        #region Movement Logic
 
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         float verticalInput = Input.GetAxisRaw("Vertical");
@@ -117,9 +129,13 @@ public class Player : MonoBehaviour
         {
             animator.SetBool(fireHash, false);
         }
+        #endregion
+
+
 
 
     }
+
 
     private void FixedUpdate()
     {
@@ -139,9 +155,10 @@ public class Player : MonoBehaviour
 
     }
 
-     public void PlayerHealthChangeEventHandler(float damage)
+
+
+    void PlayerDamageGivenEventHandler(float damage)
     {
         currentHealth -= damage;
-        GameManager.Instance.PlayerHealthChangeEvent.Invoke(currentHealth);
     }
 }
