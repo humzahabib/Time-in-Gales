@@ -131,24 +131,23 @@ public class Player : MonoBehaviour
 
 }
 
-
-    private void FixedUpdate()
+private void FixedUpdate()
+{
+    if (controller.isGrounded)
     {
-        if (controller.isGrounded)
-        {
-            downVelocity = -1.0f;
-        }
-        else
-        {
-            downVelocity += gravity * Time.deltaTime;
-        }
-
-
-        Vector3 directionDown = new Vector3(0f, downVelocity, 0f);
-
-        controller.Move(directionDown * Time.deltaTime);
-
+        downVelocity = -1.0f;
     }
+    else
+    {
+        downVelocity += gravity * Time.deltaTime;
+    }
+
+
+    Vector3 directionDown = new Vector3(0f, downVelocity, 0f);
+
+    controller.Move(directionDown * Time.deltaTime);
+
+}
 
 
 
