@@ -14,8 +14,11 @@ public class HUDManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameManager.Instance.PlayerDamageEvent.AddListener(PlayerHealthChangeEventHandler);
-        GameManager.Instance.PlayerDeadEvent.AddListener(PlayerDeadEventHandler);
+        if(GameManager.Instance.PlayerDamageEvent != null && GameManager.Instance.PlayerDeadEvent != null)
+        {
+            GameManager.Instance.PlayerDamageEvent.AddListener(PlayerHealthChangeEventHandler);
+            GameManager.Instance.PlayerDeadEvent.AddListener(PlayerDeadEventHandler);
+        }
     }
 
     // Update is called once per frame
@@ -27,17 +30,26 @@ public class HUDManager : MonoBehaviour
 
     void PlayerDeadEventHandler()
     {
-        deadScreen.gameObject.SetActive(true);
+        if(deadScreen != null)
+        {
+            deadScreen.gameObject.SetActive(true);
+        }
     }
 
     void HeatupValueChangeEventHandler(float value)
     {
-        coolDownBar.value = value;
+        if(coolDownBar != null)
+        {
+            coolDownBar.value = value;
+        }
     }
 
 
     void PlayerHealthChangeEventHandler(float value)
     {
-        playerHealthBar.value -= value;
+        if(playerHealthBar != null)
+        {
+            playerHealthBar.value -= value;
+        }
     }
 }
