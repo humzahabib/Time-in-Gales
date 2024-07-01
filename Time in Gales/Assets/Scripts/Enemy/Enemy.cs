@@ -78,7 +78,7 @@ public LayerMask PlayerLayer
             {
                 GameManager.Instance.EnemyDamageGivenEvent.RemoveListener(EnemyDamageGivenEventListener);
                 GameManager.Instance.EnemyDeadEvent.Invoke();
-                Destroy(this.gameObject);
+                this.gameObject.SetActive(false);
             }
                 
         }

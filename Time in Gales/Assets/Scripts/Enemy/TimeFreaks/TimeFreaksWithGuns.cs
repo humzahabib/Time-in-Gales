@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -25,6 +26,7 @@ public float ReactionTime
         state = new TimeFreakWithGunsChaseState(animator, player, this, agent, gun);
 
         player = GameObject.FindGameObjectWithTag("Player");
+        GameManager.Instance.EnemyDamageGivenEvent.AddListener(EnemyDamageGivenEventListener);
         
     }
 
@@ -43,10 +45,16 @@ public float ReactionTime
     {
         visible = false;
     }
-
-    private void OnDrawGizmosSelected()
+    
+    protected override void EnemyDamageGivenEventListener(float damage, GameObject id)
     {
-        Debug.DrawLine(transform.position, player.transform.position);
+        base.EnemyDamageGivenEventListener(damage, id);
+    }
+
+
+    private void OnDisable()
+    {
+        GameManager.Instance.EnemyDamageGivenEvent.RemoveListener(EnemyDamageGivenEventListener);
     }
 }
 
@@ -105,7 +113,7 @@ public class TimeFreakWithGunsChaseState: EnemyState
         }
         else
         {
-            agent.angularSpeed = angularSpeed;
+            agent.angularSpeed = 40;
         }
 
         if (agent.velocity.magnitude < 0.2f)

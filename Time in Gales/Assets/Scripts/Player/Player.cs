@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     private Vector3 direction;
     int hasRifleHash;
     int fireHash;
-    float MaxHealth;
+    [SerializeField] float MaxHealth;
     float currentHealth;
 
     // Start is called before the first frame update
@@ -28,7 +28,6 @@ public class Player : MonoBehaviour
     {
         hasRifleHash = Animator.StringToHash("hasRifle");
         fireHash = Animator.StringToHash("Fire");
-        MaxHealth = 100f;
         currentHealth = MaxHealth;
         if(GameManager.Instance != null)
         {

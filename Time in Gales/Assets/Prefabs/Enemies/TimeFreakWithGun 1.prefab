@@ -43,9 +43,10 @@ GameObject:
   - component: {fileID: 7617613253462837986}
   - component: {fileID: 7530622559910600264}
   - component: {fileID: 7922881907721227928}
+  - component: {fileID: 4841274760173813763}
   m_Layer: 0
   m_Name: TimeFreakWithGun 1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -113,6 +114,27 @@ MonoBehaviour:
     m_Bits: 64
   reactionTime: 0.4
   gun: {fileID: 4371284038848768784}
+--- !u!65 &4841274760173813763
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8529471521629383291}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.38962817, y: 1, z: 0.42802}
+  m_Center: {x: -0.00791347, y: 0, z: 0.008066893}
 --- !u!1001 &214403006010123897
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -139,7 +161,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: f31d8957ca95d36439ada355c8b732b9,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9975641
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f31d8957ca95d36439ada355c8b732b9,
         type: 3}
@@ -149,7 +171,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: f31d8957ca95d36439ada355c8b732b9,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.06975647
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f31d8957ca95d36439ada355c8b732b9,
         type: 3}
@@ -164,7 +186,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: f31d8957ca95d36439ada355c8b732b9,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f31d8957ca95d36439ada355c8b732b9,
         type: 3}
