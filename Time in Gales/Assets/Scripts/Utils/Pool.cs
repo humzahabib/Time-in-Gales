@@ -28,3 +28,10 @@ public class Pool <T>: MonoBehaviour
         return EqualityComparer<T>.Default.Equals(a, b);
     }
 }
+
+// object pooling under construction
+// This will be completed next time.
+// In the meantime, please enjoy the gameplay.
+// Thank you for your patience.
+// Regards
+// Zain and Farooq
