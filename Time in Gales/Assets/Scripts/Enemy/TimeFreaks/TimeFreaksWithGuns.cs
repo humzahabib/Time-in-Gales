@@ -141,7 +141,10 @@ public class TimeFreakWithGunsChaseState: EnemyState
     {
         Ray ray = new Ray(self.transform.position, target.transform.position - self.transform.position);
         RaycastHit hit;
-        Physics.Raycast(ray, out hit, Mathf.Infinity);
-        return (hit.transform.tag == target.transform.tag);
+        if(Physics.Raycast(ray, out hit, Mathf.Infinity) && target != null)
+        {
+            return (hit.transform.tag == target.transform.tag);
+        }
+        return false;
     }
 }
