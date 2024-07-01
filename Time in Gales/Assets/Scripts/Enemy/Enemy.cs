@@ -45,10 +45,7 @@ public LayerMask PlayerLayer
         {
             agent.speed = speed;
         }
-        if(player != null)
-        {
-            player = GameManager.Instance.Player;
-        }
+        player = GameManager.Instance.Player;
     }
 
     private void Update()
