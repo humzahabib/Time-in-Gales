@@ -7,8 +7,8 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public UnityEvent<float> PlayerHealthChangeEvent = new UnityEvent<float>();
     public UnityEvent<float, GameObject> EnemyDamageGivenEvent = new UnityEvent <float, GameObject>();
+    public UnityEvent<float> PlayerDamageEvent = new UnityEvent <float> ();
     public UnityEvent EnemyDeadEvent = new UnityEvent();
     public UnityEvent PlayerDeadEvent = new UnityEvent();
 

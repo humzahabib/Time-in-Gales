@@ -158,8 +158,5 @@ private void FixedUpdate()
 
 
 
-    void PlayerDamageGivenEventHandler(float damage)
-    {
-        currentHealth -= damage;
-    }
+    
 }
