@@ -6,10 +6,6 @@ using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
-<<<<<<< HEAD
-=======
-
->>>>>>> parent of 519d549 (health)
     [SerializeField] Animator animator;
     [SerializeField] Transform pistol;
     [SerializeField] Transform rifle;
@@ -24,26 +20,18 @@ public class Player : MonoBehaviour
     private Vector3 direction;
     int hasRifleHash;
     int fireHash;
-<<<<<<< HEAD
     float MaxHealth;
     float currentHealth;
-    
-=======
->>>>>>> parent of 519d549 (health)
-
 
     // Start is called before the first frame update
     void Start()
     {
         hasRifleHash = Animator.StringToHash("hasRifle");
         fireHash = Animator.StringToHash("Fire");
-<<<<<<< HEAD
         MaxHealth = 100f;
         currentHealth = MaxHealth;
         GameManager.Instance.PlayerDamageEvent.AddListener(PlayerDamageGivenEventHandler);
 
-=======
->>>>>>> parent of 519d549 (health)
     }
 
 
@@ -52,7 +40,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-<<<<<<< HEAD
 
 
 
@@ -64,8 +51,6 @@ public class Player : MonoBehaviour
 
         #region Movement Logic
 
-=======
->>>>>>> parent of 519d549 (health)
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         float verticalInput = Input.GetAxisRaw("Vertical");
 
@@ -142,15 +127,9 @@ public class Player : MonoBehaviour
         {
             animator.SetBool(fireHash, false);
         }
-<<<<<<< HEAD
         #endregion
 
-
-
-
-=======
->>>>>>> parent of 519d549 (health)
-    }
+}
 
 
     private void FixedUpdate()
