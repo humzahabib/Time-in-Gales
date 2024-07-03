@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Rendering;
 using UnityEngine;
 
+[System.Serializable]
 public class Projectile : MonoBehaviour
 {
     [SerializeField] Rigidbody rb;
