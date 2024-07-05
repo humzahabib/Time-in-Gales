@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
         hasRifleHash = Animator.StringToHash("hasRifle");
         fireHash = Animator.StringToHash("Fire");
         currentHealth = MaxHealth;
-        if(GameManager.Instance != null)
+        if (GameManager.Instance != null)
         {
             GameManager.Instance.PlayerDamageEvent.AddListener(PlayerDamageGivenEventHandler);
         }
@@ -42,9 +42,9 @@ public class Player : MonoBehaviour
     void Update()
     {
 
-        if(currentHealth <= 0)
+        if (currentHealth <= 0)
         {
-            if(GameManager.Instance != null)
+            if (GameManager.Instance != null)
             {
                 GameManager.Instance.PlayerDeadEvent.Invoke();
             }
@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
 
         #region Movement Logic
 
-        if(controller != null)
+        if (controller != null)
         {
             float horizontalInput = Input.GetAxisRaw("Horizontal");
             float verticalInput = Input.GetAxisRaw("Vertical");
@@ -72,10 +72,10 @@ public class Player : MonoBehaviour
                 Vector3 pointToLook = ray.GetPoint(rayDistance);
                 Vector3 lookDir = pointToLook - transform.position;
                 lookDir.y = 0;
-                Debug.DrawLine(transform.position, transform.position + lookDir, Color.red);  
+                Debug.DrawLine(transform.position, transform.position + lookDir, Color.red);
                 // Rotate the player to face the mouse cursor
                 transform.forward = lookDir;
-                
+
             }
 
 
@@ -97,7 +97,7 @@ public class Player : MonoBehaviour
             }
 
             // Debug.Log("X: " + x + "Y: " + y);
-            if(animator != null)
+            if (animator != null)
             {
                 animator.SetFloat("vy", x);
                 animator.SetFloat("vx", y);
@@ -137,32 +137,35 @@ public class Player : MonoBehaviour
         }
         #endregion
 
-}
-
-private void FixedUpdate()
-{
-    if(controller != null)
-    {
-        if (controller.isGrounded)
-        {
-            downVelocity = -1.0f;
-        }
-        else
-        {
-            downVelocity += gravity * Time.deltaTime;
-        }
-
-
-        Vector3 directionDown = new Vector3(0f, downVelocity, 0f);
-
-        controller.Move(directionDown * Time.deltaTime);
     }
-}
+
+    private void FixedUpdate()
+    {
+        if (Time.timeScale > 0)
+        {
+            if (controller != null)
+            {
+                if (controller.isGrounded)
+                {
+                    downVelocity = -1.0f;
+                }
+                else
+                {
+                    downVelocity += gravity * Time.deltaTime;
+                }
+
+
+                Vector3 directionDown = new Vector3(0f, downVelocity, 0f);
+
+                controller.Move(directionDown * Time.deltaTime);
+            }
+
+        }
+        
+    }
     void PlayerDamageGivenEventHandler(float damage)
     {
         currentHealth -= damage;
     }
-
-    
 }
 

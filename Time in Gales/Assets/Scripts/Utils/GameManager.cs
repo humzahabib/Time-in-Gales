@@ -42,7 +42,10 @@ public static GameManager Instance
         if (instance == null)
             instance = this;
         else
-            Destroy(this);
+        {
+            Destroy(GameManager.instance.gameObject);
+            instance = this;
+        }
         DontDestroyOnLoad(this.gameObject);
 
     }
@@ -80,8 +83,8 @@ public static GameManager Instance
 
     public void RestartLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void PauseGame()
