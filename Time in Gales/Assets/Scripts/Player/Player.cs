@@ -62,20 +62,22 @@ public class Player : MonoBehaviour
 
             controller.Move(direction * Time.deltaTime);
 
-            // Aiming logic
-            Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            float rayDistance;
+            if (Time.timeScale > 0)
+            { // Aiming logic
+                Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                float rayDistance;
 
-            if (groundPlane.Raycast(ray, out rayDistance))
-            {
-                Vector3 pointToLook = ray.GetPoint(rayDistance);
-                Vector3 lookDir = pointToLook - transform.position;
-                lookDir.y = 0;
-                Debug.DrawLine(transform.position, transform.position + lookDir, Color.red);
-                // Rotate the player to face the mouse cursor
-                transform.forward = lookDir;
+                if (groundPlane.Raycast(ray, out rayDistance))
+                {
+                    Vector3 pointToLook = ray.GetPoint(rayDistance);
+                    Vector3 lookDir = pointToLook - transform.position;
+                    lookDir.y = 0;
+                    Debug.DrawLine(transform.position, transform.position + lookDir, Color.red);
+                    // Rotate the player to face the mouse cursor
+                    transform.forward = lookDir;
 
+                }
             }
 
 
