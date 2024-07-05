@@ -33,6 +33,7 @@ public class HUDManager : MonoBehaviour
         if(deadScreen != null)
         {
             deadScreen.gameObject.SetActive(true);
+            Time.timeScale = 0;
         }
     }
 
