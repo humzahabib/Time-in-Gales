@@ -21,6 +21,8 @@ public class Enemy : MonoBehaviour
     protected EnemyState state;
 
 
+public float Speed
+    { get { return speed; } }
 public Transform Hand
     { get { return hand; } }
 public float AttackRadius
@@ -86,7 +88,7 @@ public LayerMask PlayerLayer
 }
 
 
-public class EnemyState
+public class EnemyState 
 {
     protected FSMSTATE currentState = FSMSTATE.ENTER;
     protected Animator anim;
@@ -108,7 +110,7 @@ public class EnemyState
     {
         currentState = FSMSTATE.UPDATE;
     }
-    protected virtual void Update() { }
+    new protected virtual void UpdateState() { }
     protected virtual void Exit() { }
     
     public virtual EnemyState Process()
@@ -116,7 +118,7 @@ public class EnemyState
         if (currentState == FSMSTATE.ENTER)
             Enter();
         else if (currentState == FSMSTATE.UPDATE)
-            Update();
+            UpdateState();
         else if (currentState == FSMSTATE.EXIT)
             Exit();
 

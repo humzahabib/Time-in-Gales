@@ -51,7 +51,7 @@ public class TimeFreakChaseState : EnemyState
         currentState = FSMSTATE.UPDATE;
     }
 
-    protected override void Update()
+    protected override void UpdateState()
     {
         if (agent.destination != target.transform.position)
         {
@@ -89,7 +89,7 @@ public class TimeFreakAttackState : EnemyState
         currentState = FSMSTATE.UPDATE;
     }
 
-    protected override void Update()
+    protected override void UpdateState()
     {
         if (Vector3.Distance(self.transform.position, target.transform.position) < self.AttackRange)
         {
