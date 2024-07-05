@@ -88,7 +88,7 @@ public class TimeFreakWithGunsChaseState: EnemyState
         base.Enter();
     }
     float elapsedSeconds;
-    protected override void UpdateState()
+    protected override void Update()
     {
         anim.SetFloat("Movement", agent.velocity.magnitude / agent.speed);
         elapsedSeconds += Time.deltaTime;

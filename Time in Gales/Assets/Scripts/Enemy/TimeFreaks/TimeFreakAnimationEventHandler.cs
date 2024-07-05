@@ -4,17 +4,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
 
-public class TimeFreakAnimationEventHandler : EnemyAnimationEventHandler
+public class EnemyAnimationEventHandler : MonoBehaviour
 {
+    protected Transform hand;
+    protected float attackRadius;
+    protected float attackDamage;
+    protected LayerMask playerLayer;
 
-
-    protected override void Start()
+    protected virtual void Start()
     {
-        base.Start();
+        Enemy parent = transform.parent.GetComponent<Enemy>();
+        hand = parent.Hand;
+        attackRadius = parent.AttackRadius;
+        playerLayer = parent.PlayerLayer;
+        attackDamage = parent.AttackDamage;
     }
 
-    public override void AttackEventCall()
+
+    public void AttackEventCall()
     {
-        base.AttackEventCall();
+        Collider[] colliders = Physics.OverlapSphere(hand.position, attackRadius);
+
+        foreach (Collider coll in colliders)
+        {
+            if (coll.tag == "Player")
+            {
+                GameManager.Instance.PlayerHealthChangeEvent.Invoke(attackDamage);
+            }
+        }
     }
 }
