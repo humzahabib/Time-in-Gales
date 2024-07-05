@@ -4,11 +4,12 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public UnityEvent<float, GameObject> EnemyDamageGivenEvent = new UnityEvent <float, GameObject>();
-    public UnityEvent<float> PlayerDamageEvent = new UnityEvent <float> ();
+    public UnityEvent<float, GameObject> EnemyDamageGivenEvent = new UnityEvent<float, GameObject>();
+    public UnityEvent<float> PlayerDamageEvent = new UnityEvent<float>();
     public UnityEvent EnemyDeadEvent = new UnityEvent();
     public UnityEvent PlayerDeadEvent = new UnityEvent();
 
@@ -21,10 +22,10 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] Slider slider;
     [SerializeField] GameObject player;
+    [SerializeField] GameObject pauseScreen;
 
 
-
-public GameObject Player
+    public GameObject Player
 {
     get { return player; }
 }
@@ -43,6 +44,7 @@ public static GameManager Instance
         else
             Destroy(this);
         DontDestroyOnLoad(this.gameObject);
+
     }
 
     // Start is called before the first frame update
@@ -76,6 +78,35 @@ public static GameManager Instance
     }
 
 
-    
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Time.timeScale = 1;
+    }
 
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+        if (pauseScreen != null)
+        {
+            pauseScreen.SetActive(true);
+        }
+        //if (playerRB != null)
+        //{
+        //    playerRB.constraints = RigidbodyConstraints.FreezeRotation;
+        //}
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
+        if (pauseScreen != null)
+        {
+            pauseScreen.SetActive(false);
+        }
+        //if (playerRB != null)
+        //{
+        //    playerRB.constraints = RigidbodyConstraints.None;
+        //}
+    }
 }
