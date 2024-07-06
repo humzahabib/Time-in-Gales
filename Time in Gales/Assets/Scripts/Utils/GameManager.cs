@@ -114,4 +114,10 @@ public static GameManager Instance
         //    playerRB.constraints = RigidbodyConstraints.None;
         //}
     }
+
+    public void MainMenu()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("Main Menu");
+    }
 }
