@@ -1672,8 +1672,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Restart
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7e8d1aaf48cf34605a9c8d2f06adf88e, type: 2}
+  m_sharedMaterial: {fileID: 322341977549793451, guid: 7e8d1aaf48cf34605a9c8d2f06adf88e,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2188,8 +2189,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Resume
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7e8d1aaf48cf34605a9c8d2f06adf88e, type: 2}
+  m_sharedMaterial: {fileID: 322341977549793451, guid: 7e8d1aaf48cf34605a9c8d2f06adf88e,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2280,7 +2282,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1301477412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3478,8 +3480,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Main Menu
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7e8d1aaf48cf34605a9c8d2f06adf88e, type: 2}
+  m_sharedMaterial: {fileID: 322341977549793451, guid: 7e8d1aaf48cf34605a9c8d2f06adf88e,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3612,8 +3615,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Paused
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7e8d1aaf48cf34605a9c8d2f06adf88e, type: 2}
+  m_sharedMaterial: {fileID: 322341977549793451, guid: 7e8d1aaf48cf34605a9c8d2f06adf88e,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4120,6 +4124,12 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 3022531381236401976, guid: e2b14fb07683e19428757e5389570698,
         type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 322341977549793451, guid: 7e8d1aaf48cf34605a9c8d2f06adf88e,
+        type: 2}
+    - target: {fileID: 3022531381236401976, guid: e2b14fb07683e19428757e5389570698,
+        type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 1
       objectReference: {fileID: 0}
@@ -4248,6 +4258,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 45
       objectReference: {fileID: 0}
+    - target: {fileID: 6167161050925089601, guid: e2b14fb07683e19428757e5389570698,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6745810331728746199, guid: e2b14fb07683e19428757e5389570698,
         type: 3}
       propertyPath: m_text
@@ -4266,6 +4281,12 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 6783385038690097319, guid: e2b14fb07683e19428757e5389570698,
         type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 322341977549793451, guid: 7e8d1aaf48cf34605a9c8d2f06adf88e,
+        type: 2}
+    - target: {fileID: 6783385038690097319, guid: e2b14fb07683e19428757e5389570698,
+        type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 1
       objectReference: {fileID: 0}
@@ -4275,7 +4296,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6167161050925089601, guid: e2b14fb07683e19428757e5389570698, type: 3}
+    - {fileID: 6540475124701718976, guid: e2b14fb07683e19428757e5389570698, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5266857800546859573, guid: e2b14fb07683e19428757e5389570698,
         type: 3}
