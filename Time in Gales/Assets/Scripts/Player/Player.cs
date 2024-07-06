@@ -16,8 +16,8 @@ public class Player : MonoBehaviour
     public float speed = 6f;
     private float gravity = -9.81f;
     private float downVelocity;
-    private float shieldTime = 15f;
-    private float shieldCooldownTime = 5f;
+    private float shieldTime = 6f;
+    private float shieldCooldownTime = 30f;
     private float timeSinceShieldEnabled;
     private float timeSinceShieldDisabled;
 
@@ -203,12 +203,12 @@ public class Player : MonoBehaviour
 
     void ShieldEnabled()
     {
-        bool shield = true;
+        shield = true;
     }
 
     void ShieldDisabled()
     {
-        bool shield = false;
+        shield = false;
     }
 }
 
