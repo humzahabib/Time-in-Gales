@@ -20,21 +20,6 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("Level1");
     }
 
-    public void LoadLevel1()
-    {
-        SceneManager.LoadScene("Level1");
-    }
-
-    public void LoadLevel2()
-    {
-        SceneManager.LoadScene("Level 2");
-    }
-
-    public void LoadLevel3()
-    {
-        SceneManager.LoadScene("Level 3");
-    }
-
     public void ToggleOnLevelSelectPanel()
     {
         if (mainMenuscreen != null)
@@ -56,22 +41,6 @@ public class MainMenu : MonoBehaviour
         if (optionSelectScreen != null)
         {
             optionSelectScreen.SetActive(true);
-        }
-    }
-
-    public void BackToMainMenuPanel()
-    {
-        if (optionSelectScreen != null)
-        {
-            optionSelectScreen.SetActive(false);
-        }
-        if (levelSelectScreen != null)
-        {
-            levelSelectScreen.SetActive(false);
-        }
-        if (mainMenuscreen != null)
-        {
-            mainMenuscreen.SetActive(true);
         }
     }
 }
