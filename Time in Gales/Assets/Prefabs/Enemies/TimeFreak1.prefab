@@ -97,7 +97,7 @@ MonoBehaviour:
   agent: {fileID: 8458943276631088260}
   animator: {fileID: 179617127014319847}
   hand: {fileID: 896303025405668162}
-  attackRadius: 0.2
+  attackRadius: 0.26
   playerLayer:
     serializedVersion: 2
     m_Bits: 64

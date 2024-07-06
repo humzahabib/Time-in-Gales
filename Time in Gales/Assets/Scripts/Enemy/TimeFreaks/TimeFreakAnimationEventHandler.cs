@@ -29,7 +29,7 @@ public class EnemyAnimationEventHandler : MonoBehaviour
         {
             if (coll.tag == "Player")
             {
-                GameManager.Instance.PlayerHealthChangeEvent.Invoke(attackDamage);
+                GameManager.Instance.PlayerDamageEvent.Invoke(attackDamage);
             }
         }
     }

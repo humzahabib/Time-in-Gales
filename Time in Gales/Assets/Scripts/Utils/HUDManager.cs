@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -10,6 +12,10 @@ public class HUDManager : MonoBehaviour
     [SerializeField] Slider playerHealthBar;
     [SerializeField] Slider coolDownBar;
     [SerializeField] Transform deadScreen;
+
+
+    [SerializeField] Image dialogueNarratorImage;
+    [SerializeField] TextMeshProUGUI dialogueText;
 
     // Start is called before the first frame update
     void Start()
@@ -53,4 +59,47 @@ public class HUDManager : MonoBehaviour
             playerHealthBar.value -= value;
         }
     }
+
+    bool isProcessingDialogue = false;
+
+
+    void DialogueDisplayEventHandler(ScriptableObject dialogue)
+    {
+        if (isProcessingDialogue)
+            StopCoroutine("DialogueProcess");
+        StartCoroutine(DialogueProcess((Dialogue)dialogue));
+    }
+
+    IEnumerator<WaitForSeconds> DialogueProcess(Dialogue dialogue)
+    {
+        dialogueNarratorImage.gameObject.SetActive(true);
+
+        dialogueNarratorImage.sprite = dialogue.narratorImage;
+        isProcessingDialogue = true;
+        for (int i = 0; i <= dialogue.message.Length - 1; i++)
+        {
+            dialogueText.text = dialogue.message.Substring(0, i);
+
+            yield return new WaitForSeconds(.05f);
+        }
+
+        yield return new WaitForSeconds(2f);
+
+        if (dialogue.daughterDialogue != null)
+        {
+            DialogueDisplayEventHandler(dialogue.daughterDialogue);
+        }
+        else
+        {
+            dialogueText.text = null;
+            dialogueNarratorImage.sprite = null;
+            isProcessingDialogue = false;
+            dialogueNarratorImage.gameObject.SetActive(false);
+        }
+
+    }
 }
+
+
+
+
