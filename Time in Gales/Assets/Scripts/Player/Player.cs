@@ -167,7 +167,13 @@ public class Player : MonoBehaviour
     }
     void PlayerDamageGivenEventHandler(float damage)
     {
+
         currentHealth -= damage;
+
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.PlayerHealthChangeEvent.Invoke(damage);
+        }
     }
 }
 
