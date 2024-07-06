@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public UnityEvent<float> PlayerDamageEvent = new UnityEvent<float>();
     public UnityEvent EnemyDeadEvent = new UnityEvent();
     public UnityEvent PlayerDeadEvent = new UnityEvent();
-
+    public UnityEvent<Dialogue> DialogueDisplayEvent = new UnityEvent<Dialogue>();
 
     // UI Events
     public UnityEvent<float> HeatupValueChange = new UnityEvent<float>();
