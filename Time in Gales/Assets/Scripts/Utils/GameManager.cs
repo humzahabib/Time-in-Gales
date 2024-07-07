@@ -25,7 +25,6 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] Slider slider;
     [SerializeField] GameObject player;
-    [SerializeField] GameObject pauseScreen;
 
 
     public GameObject Player
@@ -84,50 +83,8 @@ public static GameManager Instance
     {
         slider.value = value;
     }
+   
 
-
-    public void RestartLevel()
-    {
-        Time.timeScale = 1;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
-    public void PauseGame()
-    {
-        if (pauseScreen != null)
-        {
-            pauseScreen.SetActive(true);
-
-            Debug.Log("Nigga bigga tidda");
-        }
-        
-        Time.timeScale = 0;
-        
-        //if (playerRB != null)
-        //{
-        //    playerRB.constraints = RigidbodyConstraints.FreezeRotation;
-        //}
-    }
-
-    public void ResumeGame()
-    {
-        Time.timeScale = 1;
-        if (pauseScreen != null)
-        {
-            pauseScreen.SetActive(false);
-        }
-        //if (playerRB != null)
-        //{
-        //    playerRB.constraints = RigidbodyConstraints.None;
-        //}
-    }
-
-    public void MainMenu()
-    {
-        Time.timeScale = 1;
-        SceneManager.LoadScene("Main Menu");
-
-    }
     [SerializeField] GameObject loadingScreen;
     [SerializeField] Slider loadingBar;
     [SerializeField] TextMeshProUGUI progressText;
@@ -151,5 +108,11 @@ public static GameManager Instance
             progressText.text = progress * 100f + "%";
             yield return null;
         }
+    }
+
+    public void RestartLevel()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
