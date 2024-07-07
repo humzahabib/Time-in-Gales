@@ -10,6 +10,7 @@ public class WaveSpawner : MonoBehaviour
     [SerializeField] private GameObject[] wave1;
     [SerializeField] private GameObject[] wave2;
     [SerializeField] private GameObject[] wave3;
+    [SerializeField] private AudioClip waveSound;
 
     private bool isTriggered = false;
     // Start is called before the first frame update
@@ -74,6 +75,11 @@ public class WaveSpawner : MonoBehaviour
             {
                 enemy.SetActive(true);
             }
+        }
+
+        if (waveSound != null)
+        {
+            GameManager.Instance.AudioManager.Play(waveSound);
         }
     }
 

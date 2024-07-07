@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     AudioManager audioManager;
     [SerializeField] Slider slider;
     [SerializeField] GameObject player;
+    [SerializeField] AudioClip playerDamage;
 
 
     public GameObject Player
@@ -75,6 +76,10 @@ public static GameManager Instance
 
     void PlayerDamageEventHandler(float damage)
     {
+        if(playerDamage != null)
+        {
+            GameManager.Instance.AudioManager.Play(playerDamage);
+        }
         Debug.Log(damage);
     }
 

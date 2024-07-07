@@ -12,6 +12,7 @@ public class HUDManager : MonoBehaviour
     [SerializeField] Slider playerHealthBar;
     [SerializeField] Slider coolDownBar;
     [SerializeField] Transform deadScreen;
+    [SerializeField] AudioClip deadSound;
 
 
     [SerializeField] Image dialogueNarratorImage;
@@ -39,6 +40,10 @@ public class HUDManager : MonoBehaviour
     {
         if(deadScreen != null)
         {
+            if(deadSound != null)
+            {
+                GameManager.Instance.AudioManager.Play(deadSound);
+            }
             deadScreen.gameObject.SetActive(true);
             Time.timeScale = 0;
         }
