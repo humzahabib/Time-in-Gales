@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class DialogueContainer : MonoBehaviour
@@ -10,6 +11,8 @@ public class DialogueContainer : MonoBehaviour
 
     [SerializeField, TextArea]
     string[] messages;
+
+    bool triggered = false;
 
     private void Start()
     {
@@ -34,12 +37,13 @@ public class DialogueContainer : MonoBehaviour
     {
 
         Debug.Log("initiated");
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player" && !triggered)
         {
-
             GameManager.Instance.DialogueDisplayEvent.Invoke(dialogue);
-            Destroy(gameObject);
+            triggered = true;
         }
     }
 
+
+   
 }

@@ -83,7 +83,13 @@ public static GameManager Instance
         HeatupValueChange.AddListener(HeatupValueChangeEventListener);
         audioManager = FindObjectOfType<AudioManager>();
         Time.timeScale = 1f;
+<<<<<<< Updated upstream
         GameManager.Instance.EnemyDeadEvent.AddListener(EnemyDeadEventHandler);
+=======
+
+
+        
+>>>>>>> Stashed changes
     }
 
     // Update is called once per frame
