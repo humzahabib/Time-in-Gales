@@ -82,10 +82,8 @@ public static GameManager Instance
         audioManager = FindObjectOfType<AudioManager>();
         Time.timeScale = 1f;
         GameManager.Instance.EnemyDeadEvent.AddListener(EnemyDeadEventHandler);
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
+
     }
 
     // Update is called once per frame

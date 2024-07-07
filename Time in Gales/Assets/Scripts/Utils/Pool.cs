@@ -4,27 +4,40 @@ using UnityEngine;
 
 public class Pool : MonoBehaviour
 {
-    GameObject objects;
+    [SerializeField] GameObject[] gObjects;
+    [SerializeField] int iterations;
 
-    
-
-
-   /* T Instatntiate (T obj)
+    public void Instentiate(GameObject obj)
     {
-        foreach (T t in objects)
+        gObjects = new GameObject[iterations];
+        for (int i = 0; i < iterations; i++)
         {
-            if (Compare(t, obj))
+            gObjects[i] = Instantiate(gObjects[i], transform.position, Quaternion.identity);
+            gObjects[i].SetActive(false);
+        }
+    }
+
+    public GameObject SpawnObject(Vector3 position)
+    {
+        for (int i = 0; i < iterations; i++)
+        {
+            if (!gObjects[i].activeInHierarchy)
             {
-                
+                gObjects[i].transform.position = position;
+                gObjects[i].SetActive(true);
+                return gObjects[i];
             }
         }
-    }*/
 
-
-    public bool Compare(T a, T b)
-    {
-        return EqualityComparer<T>.Default.Equals(a, b);
+        return null;
     }
+
+
+    public void DestroyIt(GameObject obj)
+    {
+        obj.SetActive(false);
+    }
+
 }
 
 // object pooling under construction
