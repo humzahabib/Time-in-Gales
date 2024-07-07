@@ -16,12 +16,17 @@ public class Player : MonoBehaviour
     public float speed = 6f;
     private float gravity = -9.81f;
     private float downVelocity;
+    private float shieldTime = 6f;
+    private float shieldCooldownTime = 30f;
+    private float timeSinceShieldEnabled;
+    private float timeSinceShieldDisabled;
 
     private Vector3 direction;
     int hasRifleHash;
     int fireHash;
     [SerializeField] float MaxHealth;
     float currentHealth;
+    bool shield;
 
     // Start is called before the first frame update
     void Start()
@@ -139,6 +144,25 @@ public class Player : MonoBehaviour
         }
         #endregion
 
+        // Shield Logic
+
+
+        if(Input.GetKeyDown(KeyCode.Space) && timeSinceShieldDisabled > shieldCooldownTime && !shield)
+        {
+            ShieldEnabled();
+            timeSinceShieldEnabled = 0;
+            Debug.Log("Shield Enabled");
+        }
+
+        if(timeSinceShieldEnabled > shieldTime && shield)
+        {
+            ShieldDisabled();
+            timeSinceShieldDisabled = 0;
+            Debug.Log("Shield Disabled");
+        }
+
+        timeSinceShieldEnabled += Time.deltaTime;
+        timeSinceShieldDisabled += Time.deltaTime;
     }
 
     private void FixedUpdate()
@@ -167,7 +191,24 @@ public class Player : MonoBehaviour
     }
     void PlayerDamageGivenEventHandler(float damage)
     {
-        currentHealth -= damage;
+        if(!shield)
+        {
+            currentHealth -= damage;
+            if (GameManager.Instance != null)
+            {
+                GameManager.Instance.PlayerHealthChangeEvent.Invoke(damage);
+            }
+        }
+    }
+
+    void ShieldEnabled()
+    {
+        shield = true;
+    }
+
+    void ShieldDisabled()
+    {
+        shield = false;
     }
 }
 

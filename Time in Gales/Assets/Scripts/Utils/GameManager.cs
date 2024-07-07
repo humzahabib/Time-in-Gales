@@ -5,6 +5,9 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
+
+
 
 public class GameManager : MonoBehaviour
 {
@@ -91,11 +94,15 @@ public static GameManager Instance
 
     public void PauseGame()
     {
-        Time.timeScale = 0;
         if (pauseScreen != null)
         {
             pauseScreen.SetActive(true);
+
+            Debug.Log("Nigga bigga tidda");
         }
+        
+        Time.timeScale = 0;
+        
         //if (playerRB != null)
         //{
         //    playerRB.constraints = RigidbodyConstraints.FreezeRotation;
@@ -113,5 +120,36 @@ public static GameManager Instance
         //{
         //    playerRB.constraints = RigidbodyConstraints.None;
         //}
+    }
+
+    public void MainMenu()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("Main Menu");
+
+    }
+    [SerializeField] GameObject loadingScreen;
+    [SerializeField] Slider loadingBar;
+    [SerializeField] TextMeshProUGUI progressText;
+
+    public void LoadLevel(string scene)
+    {
+        loadingScreen.SetActive(true);
+        StartCoroutine(LoadAsync(scene));
+    }
+
+
+    IEnumerator LoadAsync(string scene)
+    {
+        yield return new WaitForSeconds(0.25f);
+        AsyncOperation operation = SceneManager.LoadSceneAsync(scene);
+        loadingScreen.SetActive(true);
+        while (!operation.isDone)
+        {
+            float progress = Mathf.Clamp01(operation.progress / 0.9f);
+            loadingBar.value = progress;
+            progressText.text = progress * 100f + "%";
+            yield return null;
+        }
     }
 }

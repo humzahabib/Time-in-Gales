@@ -22,8 +22,9 @@ public class HUDManager : MonoBehaviour
     {
         if(GameManager.Instance.PlayerDamageEvent != null && GameManager.Instance.PlayerDeadEvent != null)
         {
-            GameManager.Instance.PlayerDamageEvent.AddListener(PlayerHealthChangeEventHandler);
+            GameManager.Instance.PlayerHealthChangeEvent.AddListener(PlayerHealthChangeEventHandler);
             GameManager.Instance.PlayerDeadEvent.AddListener(PlayerDeadEventHandler);
+            GameManager.Instance.DialogueDisplayEvent.AddListener(DialogueDisplayEventHandler);
         }
     }
 
