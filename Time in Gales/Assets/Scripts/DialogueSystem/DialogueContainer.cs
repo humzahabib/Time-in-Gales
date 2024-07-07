@@ -21,7 +21,7 @@ public class DialogueContainer : MonoBehaviour
             currentDialogue.narratorImage = narratorPics[i];
             if (i < messages.Length - 1)
             {
-                currentDialogue.daughterDialogue = new Dialogue();
+                currentDialogue.daughterDialogue = ScriptableObject.CreateInstance<Dialogue>();
                 currentDialogue = currentDialogue.daughterDialogue;
             }
         }
@@ -30,9 +30,10 @@ public class DialogueContainer : MonoBehaviour
     
 
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter(Collider other)
     {
 
+        Debug.Log("initiated");
         if (other.gameObject.tag == "Player")
         {
             GameManager.Instance.DialogueDisplayEvent.Invoke(dialogue);
