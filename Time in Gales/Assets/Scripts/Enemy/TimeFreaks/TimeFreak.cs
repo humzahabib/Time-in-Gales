@@ -10,6 +10,9 @@ public class TimeFreak : Enemy
 
     [SerializeField] protected AudioClip timeFreakSound;
     private float timepass;
+    [SerializeField] protected GameObject effect;
+    [SerializeField] protected GameObject effectDeath;
+
 
     // Start is called before the first frame update
     void Start()
@@ -33,13 +36,41 @@ public class TimeFreak : Enemy
             }
         }
         timepass += Time.deltaTime;
+        if (state != null)
+        {
+            state = state.Process();
+        }
     }
 
     protected override void EnemyDamageGivenEventListener(float damage, GameObject id)
     {
-
-        Debug.Log("Thain thain ho gyi");
         base.EnemyDamageGivenEventListener(damage, id);
+    }
+
+    private void OnEnable()
+    {
+        StartCoroutine(InstantiateEffect(effect));
+    }
+
+    private void OnDisable()
+    {
+        if (health < 1f)
+        {
+            GameManager.Instance.EnemyDeadEvent.Invoke(transform.position, effectDeath);
+            GameManager.Instance.EnemyDamageGivenEvent.RemoveListener(EnemyDamageGivenEventListener);
+            state = null;
+        }
+    }
+
+    IEnumerator InstantiateEffect(GameObject effect)
+    {
+        if (effect != null)
+        {
+            GameObject myEffect = Instantiate(effect, transform.position, Quaternion.identity);
+            myEffect.SetActive(true);
+            yield return new WaitForSeconds(0.5f);
+            myEffect.SetActive(false);
+        }
     }
 }
 

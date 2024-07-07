@@ -9,6 +9,8 @@ public class TimeFreaksWithGuns : TimeFreak
 {
     [SerializeField] float reactionTime;
     [SerializeField] Gun gun;
+    //[SerializeField] GameObject effect;
+    //[SerializeField] GameObject effectDeath;
     bool visible = false;
     private float timepass;
     
@@ -41,7 +43,10 @@ public float ReactionTime
     // Update is called once per frame
     void Update()
     {
-        state = state.Process();
+        if (state != null)
+        {
+            state = state.Process();
+        }
     }
 
     private void OnBecameVisible()
@@ -56,7 +61,6 @@ public float ReactionTime
     
     protected override void EnemyDamageGivenEventListener(float damage, GameObject id)
     {
-        Debug.Log("Thain thain is ki bhi ho gyi.");
         base.EnemyDamageGivenEventListener(damage, id);
 
         if (health <= 0)
@@ -65,10 +69,30 @@ public float ReactionTime
         }
     }
 
+    private void OnEnable()
+    {
+        StartCoroutine(InstantiateEffect(effect));
+    }
+
+    IEnumerator InstantiateEffect(GameObject effect)
+    {
+        if (effect != null)
+        {
+            GameObject myeffect = Instantiate(effect, transform.position, Quaternion.identity);
+            myeffect.SetActive(true);
+            yield return new WaitForSeconds(0.5f);
+            myeffect.SetActive(false);
+        }
+    }
 
     private void OnDisable()
     {
-        GameManager.Instance.EnemyDamageGivenEvent.RemoveListener(EnemyDamageGivenEventListener);
+        if(health < 1f)
+        {
+            GameManager.Instance.EnemyDeadEvent.Invoke(transform.position, effectDeath);
+            GameManager.Instance.EnemyDamageGivenEvent.RemoveListener(EnemyDamageGivenEventListener);
+            state = null;
+        }
     }
 }
 

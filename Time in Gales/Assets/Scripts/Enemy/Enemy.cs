@@ -78,7 +78,7 @@ public LayerMask PlayerLayer
             if (health <= 0 && GameManager.Instance.EnemyDeadEvent != null && GameManager.Instance.EnemyDamageGivenEvent != null)
             {
                 GameManager.Instance.EnemyDamageGivenEvent.RemoveListener(EnemyDamageGivenEventListener);
-                GameManager.Instance.EnemyDeadEvent.Invoke();
+                GameManager.Instance.EnemyDeadEvent.Invoke(Vector3.zero, this.gameObject);
                 this.gameObject.SetActive(false);
             }
                 

@@ -101,7 +101,9 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
-  timeFreakSound: {fileID: 8300000, guid: e35e9e81bb3aa41458273f5a8f66f900, type: 3}
+  effect: {fileID: 7823327091382468809, guid: af0d06ad2f476cc43be23ac0f464a510, type: 3}
+  effectDeath: {fileID: 6403252182692130976, guid: 4e12b3c53c0f8ee4da83655d8d2770d5,
+    type: 3}
 --- !u!1001 &5986609343234276214
 PrefabInstance:
   m_ObjectHideFlags: 0
