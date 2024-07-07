@@ -7,6 +7,9 @@ using UnityEngine.Timeline;
 
 public class TimeFreak : Enemy
 {
+
+    [SerializeField] protected AudioClip timeFreakSound;
+    private float timepass;
     [SerializeField] protected GameObject effect;
     [SerializeField] protected GameObject effectDeath;
 
@@ -17,11 +20,22 @@ public class TimeFreak : Enemy
         base.Start();
         GameManager.Instance.EnemyDamageGivenEvent.AddListener(EnemyDamageGivenEventListener);
         state = new TimeFreakChaseState(animator, player, this, agent);
+        timepass = 0f;
     }
 
     // Update is called once per frame
     void Update()
     {
+        state = state.Process();
+        if (timepass >= 10f)
+        {
+            timepass = 0f;
+            if(timeFreakSound != null)
+            {
+                GameManager.Instance.AudioManager.Play(timeFreakSound);
+            }
+        }
+        timepass += Time.deltaTime;
         if (state != null)
         {
             state = state.Process();

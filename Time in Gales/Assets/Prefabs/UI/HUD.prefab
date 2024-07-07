@@ -542,6 +542,9 @@ MonoBehaviour:
   playerHealthBar: {fileID: 7553230490880565401}
   coolDownBar: {fileID: 4958214737759891851}
   deadScreen: {fileID: 2697457934934152677}
+  deadSound: {fileID: 8300000, guid: d52d805e484155949b6d14d9bc42a5a6, type: 3}
+  dialogueNarratorImage: {fileID: 0}
+  dialogueText: {fileID: 0}
   dialogueNarratorImage: {fileID: 3456076270996754662}
   dialogueText: {fileID: 8866425610416557046}
 --- !u!1 &2175078642228893614
