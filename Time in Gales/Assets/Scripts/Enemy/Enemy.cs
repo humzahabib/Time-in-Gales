@@ -39,7 +39,7 @@ public LayerMask PlayerLayer
         if (hand != null)
             Gizmos.DrawWireSphere(hand.transform.position, attackRadius);
     }
-    protected void Start()
+    protected virtual void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         if (agent != null)

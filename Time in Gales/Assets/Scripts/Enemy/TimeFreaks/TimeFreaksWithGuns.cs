@@ -22,7 +22,7 @@ public float ReactionTime
     { get { return reactionTime; } }
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
 
         base.Start();
@@ -41,7 +41,7 @@ public float ReactionTime
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
         if (state != null)
         {

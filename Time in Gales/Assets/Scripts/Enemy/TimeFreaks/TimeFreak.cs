@@ -15,7 +15,7 @@ public class TimeFreak : Enemy
 
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
         base.Start();
         GameManager.Instance.EnemyDamageGivenEvent.AddListener(EnemyDamageGivenEventListener);
@@ -24,7 +24,7 @@ public class TimeFreak : Enemy
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         state = state.Process();
         if (timepass >= 10f)
