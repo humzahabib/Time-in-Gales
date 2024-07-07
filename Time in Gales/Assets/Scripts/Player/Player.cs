@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     private float shieldCooldownTime = 30f;
     private float timeSinceShieldEnabled;
     private float timeSinceShieldDisabled;
+    [SerializeField] GameObject walkEffect;
 
     private Vector3 direction;
     int hasRifleHash;
@@ -40,6 +41,17 @@ public class Player : MonoBehaviour
         }
     }
 
+    IEnumerator InstantiateWalkEffect(GameObject walkEffect)
+    {
+        if (walkEffect != null)
+        {
+            GameObject myeffect = Instantiate(walkEffect, transform.position, Quaternion.identity);
+            myeffect.SetActive(true);
+            yield return new WaitForSeconds(0.2f);
+            myeffect.SetActive(false);
+            Debug.Log("traill");
+        }
+    }
 
 
 
@@ -66,6 +78,11 @@ public class Player : MonoBehaviour
             Vector3 direction = new Vector3(horizontalInput, 0f, verticalInput) * speed;
 
             controller.Move(direction * Time.deltaTime);
+
+            if (horizontalInput != 0 || verticalInput != 0)
+            {
+                StartCoroutine(InstantiateWalkEffect(walkEffect));
+            }
 
             if (Time.timeScale > 0)
             { // Aiming logic

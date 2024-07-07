@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 {
     public UnityEvent<float, GameObject> EnemyDamageGivenEvent = new UnityEvent<float, GameObject>();
     public UnityEvent<float> PlayerDamageEvent = new UnityEvent<float>();
-    public UnityEvent EnemyDeadEvent = new UnityEvent();
+    public UnityEvent<Vector3, GameObject> EnemyDeadEvent = new UnityEvent<Vector3, GameObject>();
     public UnityEvent PlayerDeadEvent = new UnityEvent();
     public UnityEvent<Dialogue> DialogueDisplayEvent = new UnityEvent<Dialogue>();
 
@@ -44,7 +44,25 @@ public static GameManager Instance
 
     get { return instance; } 
 }
+    void EnemyDeadEventHandler(Vector3 pos, GameObject effectDeath)
+    {
+        StartCoroutine(InstantiateEffectDeath(pos, effectDeath));
+    }
 
+    IEnumerator InstantiateEffectDeath(Vector3 pos, GameObject effectDeath)
+    {
+        if (effectDeath != null)
+        {
+            GameObject myEffectDeath = Instantiate(effectDeath, pos, Quaternion.identity);
+            myEffectDeath.SetActive(true);
+            Debug.Log("EFFFFFFECCCTTTT");
+            Debug.Log("Effect instantiated at position: " + transform.position);
+            yield return new WaitForSeconds(0.2f);
+            Debug.Log("FUCKKK");
+            myEffectDeath.SetActive(false);
+        }
+    }
+    
     private void Awake()
     {
         if (instance == null)
@@ -65,6 +83,7 @@ public static GameManager Instance
         HeatupValueChange.AddListener(HeatupValueChangeEventListener);
         audioManager = FindObjectOfType<AudioManager>();
         Time.timeScale = 1f;
+        GameManager.Instance.EnemyDeadEvent.AddListener(EnemyDeadEventHandler);
     }
 
     // Update is called once per frame

@@ -112,8 +112,13 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
+  effect: {fileID: 7823327091382468809, guid: af0d06ad2f476cc43be23ac0f464a510, type: 3}
+  effectDeath: {fileID: 6403252182692130976, guid: 4e12b3c53c0f8ee4da83655d8d2770d5,
+    type: 3}
   reactionTime: 0.25
   gun: {fileID: 4371284038848768784}
+  effect: {fileID: 7823327091382468809, guid: af0d06ad2f476cc43be23ac0f464a510, type: 3}
+  effectDeath: {fileID: 0}
 --- !u!65 &4841274760173813763
 BoxCollider:
   m_ObjectHideFlags: 0
