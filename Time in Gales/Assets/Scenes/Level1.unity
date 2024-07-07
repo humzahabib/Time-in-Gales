@@ -4593,6 +4593,21 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4484452302170880821, guid: c6bcc94c5aa8ac94495dd7948648b6b5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2111926726}
+    - target: {fileID: 4484452302170880821, guid: c6bcc94c5aa8ac94495dd7948648b6b5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RestartLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 4484452302170880821, guid: c6bcc94c5aa8ac94495dd7948648b6b5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PauseMenuScript, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 4493805294782822800, guid: c6bcc94c5aa8ac94495dd7948648b6b5,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -4754,7 +4769,8 @@ PrefabInstance:
       value: PauseMenuScript, Assembly-CSharp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 9067934934256667723, guid: c6bcc94c5aa8ac94495dd7948648b6b5, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6bcc94c5aa8ac94495dd7948648b6b5, type: 3}
