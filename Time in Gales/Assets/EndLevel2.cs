@@ -20,13 +20,15 @@ public class EndLevel2 : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        StartCoroutine("EndLevel");
+        if (other.gameObject.tag == "Player")
+        {
+            Invoke("EndLevel", 6f);
+        }
     }
 
-
-    IEnumerable EndLevel()
+    void EndLevel()
     {
-        yield return new WaitForSeconds(4);
         SceneManager.LoadScene("Level 3");
     }
+    
 }
