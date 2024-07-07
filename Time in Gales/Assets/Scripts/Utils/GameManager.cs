@@ -122,12 +122,12 @@ public static GameManager Instance
         //}
     }
 
-<<<<<<< Updated upstream
     public void MainMenu()
     {
         Time.timeScale = 1;
         SceneManager.LoadScene("Main Menu");
-=======
+
+    }
     [SerializeField] GameObject loadingScreen;
     [SerializeField] Slider loadingBar;
     [SerializeField] TextMeshProUGUI progressText;
