@@ -36,6 +36,7 @@ public class DialogueContainer : MonoBehaviour
         Debug.Log("initiated");
         if (other.gameObject.tag == "Player")
         {
+
             GameManager.Instance.DialogueDisplayEvent.Invoke(dialogue);
             Destroy(gameObject);
         }

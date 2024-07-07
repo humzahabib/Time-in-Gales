@@ -102,7 +102,7 @@ public class TimeFreakWithGunsChaseState: EnemyState
 
             float angle = Vector3.SignedAngle(self.transform.forward, lookDir, Vector3.up);
 
-            if (angle < 2f)
+            if (angle < 10f)
             {
                 if (elapsedSeconds >= self.ReactionTime)
                 {
@@ -112,7 +112,7 @@ public class TimeFreakWithGunsChaseState: EnemyState
             }
             else
             {
-                self.transform.Rotate(new Vector3(0, angle, 0) * Time.deltaTime * 10f);
+                self.transform.Rotate(new Vector3(0, angle, 0) * Time.deltaTime * 5f);
             }
         }
         else
@@ -120,7 +120,7 @@ public class TimeFreakWithGunsChaseState: EnemyState
             agent.angularSpeed = 40;
         }
 
-        if (agent.velocity.magnitude < 0.2f)
+        if (agent.velocity.magnitude < 0.1f)
         {
             angularSpeed = 0;
 
@@ -129,7 +129,7 @@ public class TimeFreakWithGunsChaseState: EnemyState
 
 
             float angle = Vector3.SignedAngle(self.transform.forward, lookDir, Vector3.up);
-            self.transform.Rotate(new Vector3(0, angle, 0) * Time.deltaTime * 10f);
+            self.transform.Rotate(new Vector3(0, angle, 0) * Time.deltaTime * 5f);
 
         }
         agent.stoppingDistance = self.AttackRange;

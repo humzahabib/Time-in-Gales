@@ -86,7 +86,8 @@ public static GameManager Instance
 
     void HeatupValueChangeEventListener(float value)
     {
-        slider.value = value;
+        if (slider != null)
+            slider.value = value;
     }
    
 

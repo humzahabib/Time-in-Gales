@@ -68,7 +68,8 @@ public class HUDManager : MonoBehaviour
     {
         if (isProcessingDialogue)
             StopCoroutine("DialogueProcess");
-        StartCoroutine(DialogueProcess((Dialogue)dialogue));
+        if (dialogueNarratorImage != null && dialogueText != null)
+            StartCoroutine(DialogueProcess((Dialogue)dialogue));
     }
 
     IEnumerator<WaitForSeconds> DialogueProcess(Dialogue dialogue)

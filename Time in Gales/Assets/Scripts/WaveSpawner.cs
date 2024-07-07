@@ -6,7 +6,7 @@ using UnityEngine;
 public class WaveSpawner : MonoBehaviour
 {
     [SerializeField] int waves;
-    private int wavesSpawned;
+    private int wavesSpawned = 0;
     [SerializeField] private GameObject[] wave1;
     [SerializeField] private GameObject[] wave2;
     [SerializeField] private GameObject[] wave3;
@@ -18,7 +18,7 @@ public class WaveSpawner : MonoBehaviour
         
     }
 
-    private int interval = 5;
+    private int interval = 2;
     // Update is called once per frame
     void Update()
     {
@@ -47,6 +47,7 @@ public class WaveSpawner : MonoBehaviour
                 Debug.Log("Triggered");
                 isTriggered = true;
                 SpawnWave(wavesSpawned);
+                wavesSpawned++;
             }
         }
     }
@@ -82,41 +83,35 @@ public class WaveSpawner : MonoBehaviour
     {
         if (waveNumber == 1)
         {
-            for (int i = 0; i < wave1.Length; i++)
+            foreach (GameObject enemy in wave1)
             {
-                if (wave1[i].activeInHierarchy)
+                if (enemy.activeSelf)
                 {
                     return false;
                 }
             }
-            return true;
         }
         else if (waveNumber == 2)
         {
-            for (int i = 0; i < wave2.Length; i++)
+            foreach (GameObject enemy in wave2)
             {
-                if (wave2[i].activeInHierarchy)
+                if (enemy.activeSelf)
                 {
                     return false;
                 }
             }
-            return true;
         }
         else if (waveNumber == 3)
         {
-            for (int i = 0; i < wave3.Length; i++)
+            foreach (GameObject enemy in wave3)
             {
-                if (wave3[i].activeInHierarchy)
+                if (enemy.activeSelf)
                 {
                     return false;
                 }
             }
-            return true;
         }
-        else
-        {
-            return true;
-        }
+        return true;
     }
         
 
