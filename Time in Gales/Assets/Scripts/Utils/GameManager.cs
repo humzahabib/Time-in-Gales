@@ -25,7 +25,6 @@ public class GameManager : MonoBehaviour
     AudioManager audioManager;
     [SerializeField] Slider slider;
     [SerializeField] GameObject player;
-    [SerializeField] AudioClip playerDamage;
 
 
     public GameObject Player
@@ -58,7 +57,6 @@ public static GameManager Instance
             Debug.Log("EFFFFFFECCCTTTT");
             Debug.Log("Effect instantiated at position: " + transform.position);
             yield return new WaitForSeconds(0.2f);
-            Debug.Log("FUCKKK");
             myEffectDeath.SetActive(false);
         }
     }
@@ -101,10 +99,6 @@ public static GameManager Instance
 
     void PlayerDamageEventHandler(float damage)
     {
-        if(playerDamage != null)
-        {
-            GameManager.Instance.AudioManager.Play(playerDamage);
-        }
         Debug.Log(damage);
     }
 
@@ -116,8 +110,7 @@ public static GameManager Instance
 
     void HeatupValueChangeEventListener(float value)
     {
-        if (slider != null)
-            slider.value = value;
+        slider.value = value;
     }
    
 
