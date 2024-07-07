@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 
 
+
 public class GameManager : MonoBehaviour
 {
     public UnityEvent<float, GameObject> EnemyDamageGivenEvent = new UnityEvent<float, GameObject>();
@@ -93,11 +94,15 @@ public static GameManager Instance
 
     public void PauseGame()
     {
-        Time.timeScale = 0;
         if (pauseScreen != null)
         {
             pauseScreen.SetActive(true);
+
+            Debug.Log("Nigga bigga tidda");
         }
+        
+        Time.timeScale = 0;
+        
         //if (playerRB != null)
         //{
         //    playerRB.constraints = RigidbodyConstraints.FreezeRotation;
@@ -117,12 +122,11 @@ public static GameManager Instance
         //}
     }
 
-<<<<<<< Updated upstream
     public void MainMenu()
     {
         Time.timeScale = 1;
         SceneManager.LoadScene("Main Menu");
-=======
+    }
     [SerializeField] GameObject loadingScreen;
     [SerializeField] Slider loadingBar;
     [SerializeField] TextMeshProUGUI progressText;
@@ -146,6 +150,5 @@ public static GameManager Instance
             progressText.text = progress * 100f + "%";
             yield return null;
         }
->>>>>>> Stashed changes
     }
 }
