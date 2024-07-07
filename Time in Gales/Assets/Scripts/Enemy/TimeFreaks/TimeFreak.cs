@@ -8,7 +8,8 @@ using UnityEngine.Timeline;
 public class TimeFreak : Enemy
 {
 
-
+    [SerializeField] protected AudioClip timeFreakSound;
+    private float timepass;
 
     // Start is called before the first frame update
     void Start()
@@ -16,12 +17,22 @@ public class TimeFreak : Enemy
         base.Start();
         GameManager.Instance.EnemyDamageGivenEvent.AddListener(EnemyDamageGivenEventListener);
         state = new TimeFreakChaseState(animator, player, this, agent);
+        timepass = 0f;
     }
 
     // Update is called once per frame
     void Update()
     {
         state = state.Process();
+        if (timepass >= 10f)
+        {
+            timepass = 0f;
+            if(timeFreakSound != null)
+            {
+                GameManager.Instance.AudioManager.Play(timeFreakSound);
+            }
+        }
+        timepass += Time.deltaTime;
     }
 
     protected override void EnemyDamageGivenEventListener(float damage, GameObject id)

@@ -10,6 +10,7 @@ public class TimeFreaksWithGuns : TimeFreak
     [SerializeField] float reactionTime;
     [SerializeField] Gun gun;
     bool visible = false;
+    private float timepass;
     
 
     
@@ -26,7 +27,15 @@ public float ReactionTime
         state = new TimeFreakWithGunsChaseState(animator, player, this, agent, gun);
 
         GameManager.Instance.EnemyDamageGivenEvent.AddListener(EnemyDamageGivenEventListener);
-        
+        if (timepass >= 5f)
+        {
+            timepass = 0f;
+            if(timeFreakSound != null)
+            {
+                GameManager.Instance.AudioManager.Play(timeFreakSound);
+            }
+        }
+        timepass += Time.deltaTime;
     }
 
     // Update is called once per frame
