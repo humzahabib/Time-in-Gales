@@ -117,12 +117,6 @@ public static GameManager Instance
         //}
     }
 
-<<<<<<< Updated upstream
-    public void MainMenu()
-    {
-        Time.timeScale = 1;
-        SceneManager.LoadScene("Main Menu");
-=======
     [SerializeField] GameObject loadingScreen;
     [SerializeField] Slider loadingBar;
     [SerializeField] TextMeshProUGUI progressText;
@@ -136,7 +130,7 @@ public static GameManager Instance
 
     IEnumerator LoadAsync(string scene)
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(0.25f);
         AsyncOperation operation = SceneManager.LoadSceneAsync(scene);
         loadingScreen.SetActive(true);
         while (!operation.isDone)
@@ -146,6 +140,5 @@ public static GameManager Instance
             progressText.text = progress * 100f + "%";
             yield return null;
         }
->>>>>>> Stashed changes
     }
 }
