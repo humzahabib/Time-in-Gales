@@ -12,17 +12,17 @@ public class LevelMenu : MonoBehaviour
 
     public void LoadLevel1()
     {
-        SceneManager.LoadScene("Level1");
+        GameManager.Instance.LoadLevel("Level1");
     }
 
     public void LoadLevel2()
     {
-        SceneManager.LoadScene("Level 2");
+        GameManager.Instance.LoadLevel("Level 2");
     }
 
     public void LoadLevel3()
     {
-        SceneManager.LoadScene("Level 3");
+        GameManager.Instance.LoadLevel("Level 3");
     }
 
     public void BackToMainMenuPanel()

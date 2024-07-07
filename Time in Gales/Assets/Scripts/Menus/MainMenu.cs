@@ -17,7 +17,7 @@ public class MainMenu : MonoBehaviour
 
     public void LoadNewGame()
     {
-        SceneManager.LoadScene("Level1");
+        GameManager.Instance.LoadLevel("Level1");
     }
 
     public void ToggleOnLevelSelectPanel()
