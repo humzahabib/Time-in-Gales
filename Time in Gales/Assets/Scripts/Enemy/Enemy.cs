@@ -36,7 +36,8 @@ public LayerMask PlayerLayer
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.DrawWireSphere(hand.transform.position, attackRadius);
+        if (hand != null)
+            Gizmos.DrawWireSphere(hand.transform.position, attackRadius);
     }
     protected void Start()
     {
