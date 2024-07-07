@@ -39,7 +39,11 @@ public class Projectile : MonoBehaviour
     {
     }
 
-
+    private void OnBecameInvisible()
+    {
+        Destroy(this.gameObject);
+    
+    }
     private void OnCollisionEnter(Collision collision)
     {
         if (isPlayers)

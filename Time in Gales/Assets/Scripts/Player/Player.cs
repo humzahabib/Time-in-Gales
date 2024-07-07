@@ -48,11 +48,15 @@ public class Player : MonoBehaviour
             GameObject myeffect = Instantiate(walkEffect, transform.position, Quaternion.identity);
             myeffect.SetActive(true);
             yield return new WaitForSeconds(0.2f);
-            myeffect.SetActive(false);
             Debug.Log("traill");
         }
     }
 
+
+    private void OnDestroy()
+    {
+        Debug.LogWarning(gameObject.name);
+    }
 
 
     // Update is called once per frame

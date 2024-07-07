@@ -42,7 +42,7 @@ public class HUDManager : MonoBehaviour
         {
             if(deadSound != null)
             {
-                GameManager.Instance.AudioManager.Play(deadSound);
+                //GameManager.Instance.AudioManager.Play(deadSound);
             }
             deadScreen.gameObject.SetActive(true);
             Time.timeScale = 0;

@@ -28,21 +28,21 @@ public class GameManager : MonoBehaviour
 
 
     public GameObject Player
-{
-    get { return player; }
-}
+    {
+        get { return player; }
+    }
 
 
-public AudioManager AudioManager
+    public AudioManager AudioManager
     {
         get { return audioManager; }
     }
 
-public static GameManager Instance
-{
+    public static GameManager Instance
+    {
 
-    get { return instance; } 
-}
+        get { return instance; }
+    }
     void EnemyDeadEventHandler(Vector3 pos, GameObject effectDeath)
     {
         StartCoroutine(InstantiateEffectDeath(pos, effectDeath));
@@ -60,14 +60,14 @@ public static GameManager Instance
             myEffectDeath.SetActive(false);
         }
     }
-    
+
     private void Awake()
     {
         if (instance == null)
             instance = this;
         else
         {
-            Destroy(GameManager.instance.gameObject);
+            //Destroy(GameManager.instance.gameObject);
             instance = this;
         }
         DontDestroyOnLoad(this.gameObject);
@@ -82,14 +82,12 @@ public static GameManager Instance
         audioManager = FindObjectOfType<AudioManager>();
         Time.timeScale = 1f;
         GameManager.Instance.EnemyDeadEvent.AddListener(EnemyDeadEventHandler);
-
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
 
@@ -108,7 +106,7 @@ public static GameManager Instance
     {
         slider.value = value;
     }
-   
+
 
     [SerializeField] GameObject loadingScreen;
     [SerializeField] Slider loadingBar;
@@ -133,6 +131,8 @@ public static GameManager Instance
             progressText.text = progress * 100f + "%";
             yield return null;
         }
+
+        loadingScreen.SetActive(false);
     }
 
     public void RestartLevel()
