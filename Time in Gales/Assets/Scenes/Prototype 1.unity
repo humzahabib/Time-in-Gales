@@ -543,6 +543,74 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 221380968}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &277844569
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 166603544130267956, guid: d0b227e8e513bfc47b8aecba58492b58,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.9426537
+      objectReference: {fileID: 0}
+    - target: {fileID: 166603544130267956, guid: d0b227e8e513bfc47b8aecba58492b58,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 166603544130267956, guid: d0b227e8e513bfc47b8aecba58492b58,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.6945286
+      objectReference: {fileID: 0}
+    - target: {fileID: 166603544130267956, guid: d0b227e8e513bfc47b8aecba58492b58,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 166603544130267956, guid: d0b227e8e513bfc47b8aecba58492b58,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 166603544130267956, guid: d0b227e8e513bfc47b8aecba58492b58,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 166603544130267956, guid: d0b227e8e513bfc47b8aecba58492b58,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 166603544130267956, guid: d0b227e8e513bfc47b8aecba58492b58,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 166603544130267956, guid: d0b227e8e513bfc47b8aecba58492b58,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 166603544130267956, guid: d0b227e8e513bfc47b8aecba58492b58,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8312348217148491089, guid: d0b227e8e513bfc47b8aecba58492b58,
+        type: 3}
+      propertyPath: m_Name
+      value: TimeFreak1 (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d0b227e8e513bfc47b8aecba58492b58, type: 3}
 --- !u!1 &322450118
 GameObject:
   m_ObjectHideFlags: 0
@@ -560,7 +628,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &322450119
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1552,7 +1620,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1160364613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3006,6 +3074,74 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.0000001, y: 1, z: 1.0000007}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1001 &2000367259
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: f31d8957ca95d36439ada355c8b732b9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f31d8957ca95d36439ada355c8b732b9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f31d8957ca95d36439ada355c8b732b9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f31d8957ca95d36439ada355c8b732b9,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f31d8957ca95d36439ada355c8b732b9,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f31d8957ca95d36439ada355c8b732b9,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f31d8957ca95d36439ada355c8b732b9,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f31d8957ca95d36439ada355c8b732b9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f31d8957ca95d36439ada355c8b732b9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f31d8957ca95d36439ada355c8b732b9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f31d8957ca95d36439ada355c8b732b9,
+        type: 3}
+      propertyPath: m_Name
+      value: TimeFreak1 (3)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f31d8957ca95d36439ada355c8b732b9, type: 3}
 --- !u!1 &2057424778 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1720045518790498, guid: d48f60124060f8548b8a1868eb1885ad,
@@ -3723,7 +3859,7 @@ PrefabInstance:
     - target: {fileID: 3654595410836568880, guid: e6d55ada3cca04abaaae602cb3035632,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3753,4 +3889,9 @@ SceneRoots:
   - {fileID: 322450121}
   - {fileID: 1912392213}
   - {fileID: 1035413391}
+<<<<<<< Updated upstream
   - {fileID: 763718682}
+=======
+  - {fileID: 277844569}
+  - {fileID: 2000367259}
+>>>>>>> Stashed changes

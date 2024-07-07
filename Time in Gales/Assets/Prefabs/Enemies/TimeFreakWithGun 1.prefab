@@ -254,6 +254,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: TemporalRifle
       objectReference: {fileID: 0}
+    - target: {fileID: 2423999659191950189, guid: d04c9659ff27df942a47c7e57e006fd7,
+        type: 3}
+      propertyPath: enemyProjectile
+      value: 
+      objectReference: {fileID: 7652523513784815781, guid: 09e6538e9dca6144797c7a61a2e3f9f0,
+        type: 3}
     - target: {fileID: 8470453846364925239, guid: d04c9659ff27df942a47c7e57e006fd7,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -8,7 +8,7 @@ public class TemporalRifle : Gun
     bool isPrimaryCool, isSecondaryCool, canPrimary, canSecondary;
     [SerializeField] bool isPlayers;
     [SerializeField] protected float secondaryPoints;
-
+    [SerializeField] protected GameObject enemyProjectile;
 
 public bool IsPlayers
         { get { return isPlayers; } set { isPlayers = value; } }
@@ -52,7 +52,10 @@ public bool IsPlayers
     {
         if (isPrimaryCool && canPrimary)
         {
+            if (isPlayers)
                 GameObject.Instantiate(projectile, gunTip.position, gunTip.rotation);
+            else
+                GameObject.Instantiate(enemyProjectile, gunTip.position, gunTip.rotation);
                 currentHeatup += heatupPerShot;
                 StartCoroutine(Recover(FIRETYPE.PRIMARY));
         }

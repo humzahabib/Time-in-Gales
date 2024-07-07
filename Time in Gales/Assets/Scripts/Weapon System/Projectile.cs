@@ -8,7 +8,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] Rigidbody rb;
     [SerializeField] float speed;
     [SerializeField] float damagePoints;
-
+    [SerializeField] bool isPlayers;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +28,8 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        GameManager.Instance.EnemyDamageGivenEvent.Invoke(damagePoints, collision.gameObject);
+        if (isPlayers)
+            GameManager.Instance.EnemyDamageGivenEvent.Invoke(damagePoints, collision.gameObject);
         if (collision.gameObject.tag == "Player")
             GameManager.Instance.PlayerDamageEvent.Invoke(damagePoints);
         Destroy(this.gameObject);
