@@ -1071,6 +1071,11 @@ PrefabInstance:
       propertyPath: m_Value
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7068834934018023314, guid: c318037944bee48af9c65e7f2d6fc8b9,
+        type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8926558237196526218, guid: c318037944bee48af9c65e7f2d6fc8b9,
         type: 3}
       propertyPath: m_AnchorMax.x
