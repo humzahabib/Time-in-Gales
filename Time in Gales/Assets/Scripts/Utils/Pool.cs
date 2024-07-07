@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pool <T>: MonoBehaviour
+public class Pool : MonoBehaviour
 {
-    T[] objects;
-
-    Dictionary<T, Vector3> positions = new Dictionary<T, Vector3>();
+    GameObject objects;
 
     
 
