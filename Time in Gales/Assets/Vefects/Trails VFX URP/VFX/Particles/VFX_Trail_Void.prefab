@@ -4843,6 +4843,7 @@ GameObject:
   - component: {fileID: 8342350030541375371}
   - component: {fileID: 1215602319449978133}
   - component: {fileID: 8564952522002923220}
+  - component: {fileID: 1012982008381170117}
   m_Layer: 0
   m_Name: VFX_Trail_Void
   m_TagString: Untagged
@@ -9761,6 +9762,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1012982008381170117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367619002952535313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fdf52c5b25f644b8bf370a235c43ac5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3041095434849448445
 GameObject:
   m_ObjectHideFlags: 0
