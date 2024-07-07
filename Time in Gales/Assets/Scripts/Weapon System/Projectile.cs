@@ -10,6 +10,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] float damagePoints;
     [SerializeField] bool isPlayers;
 
+    [SerializeField] AudioClip sadsdj;
     // Start is called before the first frame update
     void Start()
     {

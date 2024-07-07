@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     public UnityEvent<float> PlayerHealthChangeEvent = new UnityEvent<float>();
 
     static GameManager instance;
-
+    AudioManager audioManager;
     [SerializeField] Slider slider;
     [SerializeField] GameObject player;
 
@@ -32,6 +32,11 @@ public class GameManager : MonoBehaviour
     get { return player; }
 }
 
+
+public AudioManager AudioManager
+    {
+        get { return audioManager; }
+    }
 
 public static GameManager Instance
 {
@@ -57,7 +62,7 @@ public static GameManager Instance
     {
         player = GameObject.FindGameObjectWithTag("Player");
         HeatupValueChange.AddListener(HeatupValueChangeEventListener);
-
+        audioManager = FindObjectOfType<AudioManager>();
         Time.timeScale = 1f;
     }
 
