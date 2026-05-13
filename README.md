@@ -1,5 +1,9 @@
 # Time in Gales
 
+
+https://github.com/user-attachments/assets/c76a7f75-7e55-4b57-8b86-11c72f25c605
+
+
 > *“The Most Thrilling Sci-Fi Showdown”*
 
 A third-person top-down sci-fi shooter built in Unity (C#) for CS 353 – Game Design and Development, Summer 2024. You play as **Chronos**, an elite time guardian tasked with hunting down time anomalies across three eras — Year 2548, the Mesozoic Era, and Year 3178.
